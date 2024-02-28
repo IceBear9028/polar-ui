@@ -1,0 +1,35 @@
+{
+  "name": "polar-ui",
+  "version": "1.0.0",
+  "description": "component ui for design system -> githib: @icebear9028",
+  "type": "module",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .ts,.tsx --ignore-path .gitignore --fix",
+    "build": "tsc && vite build"
+  },
+  "author": "icebear9028",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.2.60",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.8.0",
+    "prettier": "^3.2.5",
+    "react": "^18.2.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4",
+    "vite-plugin-dts": "^3.7.3"
+  }
+}
