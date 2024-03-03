@@ -33,5 +33,6 @@
     "vite": "^5.1.4",
     "vite-plugin-dts": "^3.7.3"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "peerDependencies": {}
 }
