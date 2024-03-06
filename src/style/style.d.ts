@@ -1,3 +1,21 @@
+interface Size {
+  xs: string;
+  sm: string;
+  md: string;
+  lg: string;
+}
+interface Variants {
+  filledContrast: string;
+  filled: string;
+  outlined: string;
+}
+
+type ColorKeys = 'red' | 'blue' | 'green' | 'gray';
+
+interface ButtonSize extends Size {}
+interface ButtonVariants extends Variants {}
+type ButtonColorKeys = ColorKeys;
+
 interface Padding {
   horizon: string;
   vertical: string;
