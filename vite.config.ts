@@ -16,5 +16,13 @@ export default defineConfig({
     sourcemap: true, // Generates source maps for debugging.
     emptyOutDir: true, // Clears the output directory before building.
   },
+  resolve: {
+    alias: [
+      { find: '@assets', replacement: '/src/assets' },
+      { find: '@components', replacement: '/src/components' },
+      { find: '@styles', replacement: '/src/style' },
+      { find: '@', replacement: '/src' },
+    ],
+  },
   plugins: [dts()], // Uses the 'vite-plugin-dts' plugin for generating TypeScript declaration files (d.ts).
 });
