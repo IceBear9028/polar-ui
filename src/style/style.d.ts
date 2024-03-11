@@ -11,6 +11,7 @@ interface Variants {
 }
 
 type ColorKeys = 'red' | 'blue' | 'green' | 'gray';
+type LightDarkKeys = 'dark' | 'light';
 
 interface ButtonSize extends Size {}
 interface ButtonVariants extends Variants {}

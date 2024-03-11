@@ -18,7 +18,7 @@ interface ButtonProps extends ButtonStyles, ButtonTypes, ButtonActions {}
 
 /** styled-component 의 ThemeProvide 를 이용한 테마 변경 사안 적용중
  */
-const styledButton = styled.button<ButtonProps>`
+const StyledButton = styled.button<ButtonProps>`
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -29,4 +29,8 @@ const styledButton = styled.button<ButtonProps>`
   cursor: pointer;
 `;
 
-export const Button: FC<ButtonProps> = (props) => {};
+const Button: FC<ButtonProps> = (props) => {
+  return <StyledButton {...props} />;
+};
+
+export default Button;
