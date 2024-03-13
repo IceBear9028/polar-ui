@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
+import { ButtonColorKeys, ButtonSize, ButtonVariants } from '@style/style';
 
 interface ButtonStyles {
   size: ButtonSize;
-  color: ButtonColorKeys;
+  color?: ButtonColorKeys;
   variants: ButtonVariants;
 }
 interface ButtonTypes {
@@ -22,8 +23,8 @@ const StyledButton = styled.button<ButtonProps>`
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background-color: ${({ theme }) => theme.primaryColor};
-  color: ${({ theme }) => theme.onPrimaryColor};
+  background-color: ${({ theme, color }) => (color ? theme[color].primary : theme.green.primary)};
+  color: ${({ theme, color }) => (color ? theme[color].onPrimary : theme.green.onPrimary)};
   border: none;
   border-radius: 5px;
   cursor: pointer;

@@ -1,3 +1,12 @@
+import { DefaultTheme } from 'styled-components';
+import 'styled-components';
+
+// styled-component 의 DefaultTheme 을 재선언
+// styled component 의 ThemeProvider 기능을 사용하기 위한 목적
+declare module 'styled-components' {
+  export interface DefaultTheme extends SystemColor {}
+}
+
 interface Size {
   xs: string;
   sm: string;

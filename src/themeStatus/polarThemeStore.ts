@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { ColorKeys, LightDarkKeys } from '@style/style';
 
 type ThemeKey = {
   colorTheme: ColorKeys;

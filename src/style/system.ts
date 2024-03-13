@@ -1,4 +1,5 @@
 import { base } from './base';
+import { SystemColor } from '@style/style';
 
 const padding = {
   input: {
