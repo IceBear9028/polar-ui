@@ -1,7 +1,7 @@
 import { base } from './base';
-import { SystemColor } from '@style/style';
+import { SystemColor, SystemPadding } from '@style/style';
 
-const padding = {
+const padding: SystemPadding = {
   input: {
     xs: {
       horizon: base.padding.padding600,
@@ -22,7 +22,7 @@ const padding = {
   },
 };
 
-const lightColors: SystemColor = {
+export const lightTheme: SystemColor = {
   common: {
     background: base.palette.backgroundLight,
     surface: base.palette.white,
@@ -92,7 +92,7 @@ const lightColors: SystemColor = {
   },
 };
 
-const darkColors: SystemColor = {
+export const darkTheme: SystemColor = {
   common: {
     background: base.palette.backgroundDark,
     surface: base.palette.gray600Bright,
@@ -165,7 +165,7 @@ const darkColors: SystemColor = {
 export const system = {
   padding,
   color: {
-    light: lightColors,
-    dark: darkColors,
+    light: lightTheme,
+    dark: darkTheme,
   },
 };

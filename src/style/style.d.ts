@@ -1,4 +1,3 @@
-import { DefaultTheme } from 'styled-components';
 import 'styled-components';
 
 // styled-component 의 DefaultTheme 을 재선언
@@ -18,6 +17,13 @@ interface Variants {
   filled: string;
   outlined: string;
 }
+interface Bolds {
+  light: string;
+  regular: string;
+  sbold: string;
+  bold: string;
+  xbold: string;
+}
 
 type ColorKeys = 'red' | 'blue' | 'green' | 'gray';
 type LightDarkKeys = 'dark' | 'light';
@@ -29,6 +35,14 @@ type ButtonColorKeys = ColorKeys;
 interface Padding {
   horizon: string;
   vertical: string;
+}
+
+interface PaddingElement {
+  [index: Size]: Padding;
+}
+
+interface SystemPadding {
+  [index: string]: PaddingElement;
 }
 
 interface SystemColor {

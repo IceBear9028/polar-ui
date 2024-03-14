@@ -5,11 +5,11 @@ import { ButtonColorKeys, ButtonSize, ButtonVariants } from '@style/style';
 interface ButtonStyles {
   size: ButtonSize;
   color?: ButtonColorKeys;
-  variants: ButtonVariants;
+  variants?: ButtonVariants;
 }
 interface ButtonTypes {
   text: string;
-  icon: React.JSX.Element;
+  icon?: React.JSX.Element;
 }
 interface ButtonActions {
   onClick: () => void;
@@ -31,7 +31,7 @@ const StyledButton = styled.button<ButtonProps>`
 `;
 
 const Button: FC<ButtonProps> = (props) => {
-  return <StyledButton {...props} />;
+  return <StyledButton {...props}>{props.text}</StyledButton>;
 };
 
 export default Button;
