@@ -45,12 +45,16 @@ interface SystemPadding {
   [index: string]: PaddingElement;
 }
 
-interface SystemColor {
+interface ThemeColors {
   common: DetailCommonColor;
   blue: DetailColorTheme;
   red: DetailColorTheme;
   gray: DetailColorTheme;
   green: DetailColorTheme;
+}
+
+interface SystemColor extends ThemeColors {
+  systemThemeColor: DetailColorTheme;
 }
 
 interface DetailColorTheme {

@@ -23,8 +23,8 @@ const StyledButton = styled.button<ButtonProps>`
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background-color: ${({ theme, color }) => (color ? theme[color].primary : theme.green.primary)};
-  color: ${({ theme, color }) => (color ? theme[color].onPrimary : theme.green.onPrimary)};
+  background-color: ${({ theme, color }) => (color ? theme[color].primary : theme.systemThemeColor.primary)};
+  color: ${({ theme, color }) => (color ? theme[color].onPrimary : theme.systemThemeColor.onPrimary)};
   border: none;
   border-radius: 5px;
   cursor: pointer;

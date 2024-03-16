@@ -1,5 +1,5 @@
 import { base } from './base';
-import { SystemColor, SystemPadding } from '@style/style';
+import { ColorKeys, SystemColor, SystemPadding, ThemeColors } from '@style/style';
 
 const padding: SystemPadding = {
   input: {
@@ -22,7 +22,7 @@ const padding: SystemPadding = {
   },
 };
 
-export const lightTheme: SystemColor = {
+export const lightTheme: ThemeColors = {
   common: {
     background: base.palette.backgroundLight,
     surface: base.palette.white,
@@ -92,7 +92,7 @@ export const lightTheme: SystemColor = {
   },
 };
 
-export const darkTheme: SystemColor = {
+export const darkTheme: ThemeColors = {
   common: {
     background: base.palette.backgroundDark,
     surface: base.palette.gray600Bright,
@@ -161,6 +161,28 @@ export const darkTheme: SystemColor = {
     onSecondaryVariant: base.palette.green200Soft,
   },
 };
+
+// 변경시 컴포넌트 기본 테마 색상을 재지정
+// systemThemeColor : 시스템 전체 테마 색상.
+export function systemDarkColor(color: ColorKeys): SystemColor {
+  return {
+    ...darkTheme,
+    systemThemeColor: {
+      ...darkTheme[color],
+    },
+  };
+}
+
+// 변경시 컴포넌트 기본 테마 색상을 재지정
+// systemThemeColor : 시스템 전체 테마 색상.
+export function systemLightColor(color: ColorKeys): SystemColor {
+  return {
+    ...lightTheme,
+    systemThemeColor: {
+      ...lightTheme[color],
+    },
+  };
+}
 
 export const system = {
   padding,
