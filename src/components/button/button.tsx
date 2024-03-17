@@ -23,8 +23,17 @@ const StyledButton = styled.button<ButtonProps>`
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background-color: ${({ theme, color }) => (color ? theme[color].primary : theme.systemThemeColor.primary)};
-  color: ${({ theme, color }) => (color ? theme[color].onPrimary : theme.systemThemeColor.onPrimary)};
+
+  // size 에 관련된 스타일 지정
+  font-size: ${({ theme, size }) => (size ? theme.fontSize.text.default : theme.fontSize.text[size])};
+  padding: ${({ theme, size }) => {
+    const resultPadding = size ? theme.padding.input[size] : theme.padding.input.default;
+    return `${resultPadding.vertical} ${resultPadding.horizon}`;
+  }};
+
+  // color 에 관련된 스타일 지정
+  background-color: ${({ theme, color }) => (color ? theme.color[color].primary : theme.color.systemThemeColor.primary)};
+  color: ${({ theme, color }) => (color ? theme.color[color].onPrimary : theme.color.systemThemeColor.onPrimary)};
   border: none;
   border-radius: 5px;
   cursor: pointer;

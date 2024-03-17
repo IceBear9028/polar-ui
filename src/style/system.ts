@@ -1,5 +1,5 @@
 import { base } from './base';
-import { ColorKeys, SystemColor, SystemPadding, ThemeColors } from '@style/style';
+import { ColorKeys, HeaderSize, Size, SizeKeys, SystemColor, SystemPadding, SystemStyle, ThemeColors } from '@style/style';
 
 const padding: SystemPadding = {
   input: {
@@ -21,6 +21,42 @@ const padding: SystemPadding = {
     },
   },
 };
+
+// 전체 시스템의 default 패딩 값을 지정하는 함수
+export function systemPadding(size: SizeKeys) {
+  const componentNames = Object.keys(padding);
+  let paddingObj: SystemPadding = {};
+  for (let comp of componentNames) {
+    paddingObj[comp] = { ...padding[comp], default: padding[comp][size] };
+  }
+  console.log(paddingObj);
+  return paddingObj;
+}
+
+/** B. fontSize
+ */
+
+const textFontSize: Size = {
+  xs: '11px',
+  sm: '13px',
+  md: '15px',
+  lg: '17px',
+};
+
+const headerFontSize: HeaderSize = {
+  h1: '56px',
+  h2: '48px',
+  h3: '36px',
+  h4: '32px',
+  h5: '24px',
+};
+
+export function systemTextFont(size: SizeKeys) {
+  return {
+    ...textFontSize,
+    default: textFontSize[size],
+  };
+}
 
 export const lightTheme: ThemeColors = {
   common: {
@@ -164,7 +200,7 @@ export const darkTheme: ThemeColors = {
 
 // 변경시 컴포넌트 기본 테마 색상을 재지정
 // systemThemeColor : 시스템 전체 테마 색상.
-export function systemDarkColor(color: ColorKeys): SystemColor {
+export function systemDarkColor(color: ColorKeys = 'green'): SystemColor {
   return {
     ...darkTheme,
     systemThemeColor: {
@@ -175,7 +211,7 @@ export function systemDarkColor(color: ColorKeys): SystemColor {
 
 // 변경시 컴포넌트 기본 테마 색상을 재지정
 // systemThemeColor : 시스템 전체 테마 색상.
-export function systemLightColor(color: ColorKeys): SystemColor {
+export function systemLightColor(color: ColorKeys = 'green'): SystemColor {
   return {
     ...lightTheme,
     systemThemeColor: {
@@ -184,10 +220,16 @@ export function systemLightColor(color: ColorKeys): SystemColor {
   };
 }
 
-export const system = {
-  padding,
-  color: {
-    light: lightTheme,
-    dark: darkTheme,
-  },
-};
+export function systemStyle(theme: 'dark' | 'light' = 'light', size: SizeKeys = 'md'): SystemStyle {
+  const systemColor = theme === 'light' ? systemLightColor() : systemDarkColor();
+  const systemPaddings = systemPadding(size);
+  const systemFontSize = {
+    header: headerFontSize,
+    text: systemTextFont(size),
+  };
+  return {
+    padding: systemPaddings,
+    color: systemColor,
+    fontSize: systemFontSize,
+  };
+}

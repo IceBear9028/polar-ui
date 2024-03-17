@@ -8,5 +8,3 @@ interface TextProps {
   bold?: Bolds;
   color?: ColorKeys;
 }
-
-const StyledText = styled.span<TextProps>``;

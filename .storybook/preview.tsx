@@ -7,9 +7,7 @@ import type { Preview } from '@storybook/react';
 // (styled-component 전용) 내가 설정한 글로벌 스타일, 테마 import
 import { ThemeProvider } from 'styled-components';
 import PolarGlobalStyle from '../src/style/polarGlobalStyle';
-import { darkTheme, lightTheme, systemDarkColor, systemLightColor } from '../src/style/system';
-
-import { usePolarThemeStore } from '../src/themeStatus/polarThemeStore';
+import { systemStyle } from '../src/style/system';
 
 const preview: Preview = {
   parameters: {
@@ -23,23 +21,23 @@ const preview: Preview = {
 };
 
 export const decorators = [
-  (Story) => {
-    const { colorTheme, darkTheme } = usePolarThemeStore();
-    return (
-      <ThemeProvider theme={darkTheme === 'light' ? systemLightColor(colorTheme) : systemDarkColor(colorTheme)}>
-        <Story />
-      </ThemeProvider>
-    );
-  },
-  // withThemeFromJSXProvider({
-  //   themes: {
-  //     light: systemLightColor(),
-  //     dark: darkTheme,
-  //   },
-  //   defaultTheme: 'light',
-  //   Provider: ThemeProvider,
-  //   PolarGlobalStyle,
-  // }),
+  // (Story) => {
+  //   const { colorTheme, darkTheme } = usePolarThemeStore();
+  //   return (
+  //     <ThemeProvider theme={darkTheme === 'light' ? systemLightColor(colorTheme) : systemDarkColor(colorTheme)}>
+  //       <Story />
+  //     </ThemeProvider>
+  //   );
+  // },
+  withThemeFromJSXProvider({
+    themes: {
+      light: systemStyle('light'),
+      dark: systemStyle('dark'),
+    },
+    defaultTheme: 'light',
+    Provider: ThemeProvider,
+    PolarGlobalStyle,
+  }),
 ];
 
 export default preview;
