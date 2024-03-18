@@ -15,7 +15,7 @@ interface ButtonActions {
   onClick: () => void;
 }
 
-interface ButtonProps extends ButtonStyles, ButtonTypes, ButtonActions {}
+export interface ButtonProps extends ButtonStyles, ButtonTypes, ButtonActions {}
 
 /** styled-component 의 ThemeProvide 를 이용한 테마 변경 사안 적용중
  */

@@ -6,8 +6,6 @@ declare module 'styled-components' {
   export interface DefaultTheme extends SystemStyle {}
 }
 
-type HeaderSizeKeys = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
-
 interface HeaderSize {
   h1: string;
   h2: string;
@@ -15,8 +13,7 @@ interface HeaderSize {
   h4: string;
   h5: string;
 }
-
-type SizeKeys = 'xs' | 'sm' | 'md' | 'lg';
+type HeaderSizeKeys = keyof HeaderSize;
 
 /** size : text 가 포함되어있는 컴포넌트들의 크기 모임
  * default : 컴포넌트의 크기를 지정하지 않았을 때의 시스템이 지정한 기본크기
@@ -28,12 +25,15 @@ interface Size {
   md: string;
   lg: string;
 }
+// type SizeKeys = 'xs' | 'sm' | 'md' | 'lg';
+type SizeKeys = keyof Omit<Size, 'default'>;
 
 interface Variants {
   filledContrast: string;
   filled: string;
   outlined: string;
 }
+type VariantKeys = keyof Variants;
 
 interface Bolds {
   light: string;
@@ -42,11 +42,14 @@ interface Bolds {
   bold: string;
   xbold: string;
 }
+type BoldKeys = keyof Bolds;
 
 type ColorKeys = 'red' | 'blue' | 'green' | 'gray';
 type LightDarkKeys = 'dark' | 'light';
+type componentKeys = 'input' | 'display';
 
-interface ButtonSize extends Size {}
+type ButtonSize = keyof Omit<Size, 'default'>;
+
 interface ButtonVariants extends Variants {}
 type ButtonColorKeys = ColorKeys;
 
@@ -57,13 +60,17 @@ interface Padding {
   vertical: string;
 }
 
-interface PaddingElement {
-  default?: Padding;
-  [index: SizeKeys]: Padding;
+interface PaddingElement extends Size {
+  default: Padding;
+  xs: Padding;
+  sm: Padding;
+  md: Padding;
+  lg: Padding;
+  // [index: SizeKeys]: Padding;
 }
 
 interface SystemPadding {
-  [index: string]: PaddingElement;
+  input: PaddingElement;
 }
 
 /** FontSIze 관련 스타일 지정
