@@ -17,6 +17,10 @@ interface ButtonActions {
 
 export interface ButtonProps extends ButtonStyles, ButtonTypes, ButtonActions {}
 
+const Button: FC<ButtonProps> = (props) => {
+  return <StyledButton {...props}>{props.text}</StyledButton>;
+};
+
 /** styled-component 의 ThemeProvide 를 이용한 테마 변경 사안 적용중
  */
 const StyledButton = styled.button<ButtonProps>`
@@ -25,7 +29,7 @@ const StyledButton = styled.button<ButtonProps>`
   gap: 5px;
 
   // size 에 관련된 스타일 지정
-  font-size: ${({ theme, size }) => (size ? theme.fontSize.text.default : theme.fontSize.text[size])};
+  font-size: ${({ theme, size }) => (size ? theme.fontSize.text[size] : theme.fontSize.text.default)};
   padding: ${({ theme, size }) => {
     const resultPadding = size ? theme.padding.input[size] : theme.padding.input.default;
     return `${resultPadding.vertical} ${resultPadding.horizon}`;
@@ -38,9 +42,5 @@ const StyledButton = styled.button<ButtonProps>`
   border-radius: 5px;
   cursor: pointer;
 `;
-
-const Button: FC<ButtonProps> = (props) => {
-  return <StyledButton {...props}>{props.text}</StyledButton>;
-};
 
 export default Button;
