@@ -154,6 +154,11 @@ const padding = {
   padding900: '18px',
 };
 
+const border = {
+  border100: '1px',
+  border200: '2px',
+};
+
 const fontSize = {
   header: {
     h5: '24px',
@@ -189,4 +194,5 @@ export const base = {
   padding,
   fontSize,
   fontWeight,
+  border,
 };

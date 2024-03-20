@@ -17,6 +17,21 @@ interface ButtonActions {
 
 export interface ButtonProps extends ButtonStyles, ButtonTypes, ButtonActions {}
 
+const ButtonVariants = {
+  filledContrast: {
+    background: '',
+    color: '',
+  },
+  filled: {
+    background: '',
+    color: '',
+  },
+  outliend: {
+    background: '',
+    color: '',
+  },
+};
+
 const Button: FC<ButtonProps> = (props) => {
   return <StyledButton {...props}>{props.text}</StyledButton>;
 };
@@ -36,7 +51,13 @@ const StyledButton = styled.button<ButtonProps>`
   }};
 
   // color 에 관련된 스타일 지정
-  background-color: ${({ theme, color }) => (color ? theme.color[color].primary : theme.color.systemThemeColor.primary)};
+
+  // variant 별 색상
+  // filledContrast -> background : primaryColor, color : onPrimaryColor
+  // filled -> background : primaryVariants, color : onPrimaryVariants
+  // outlined -> background : none, border :
+
+  background-color: ${({ theme, color, variants }) => (color ? theme.color[color].primary : theme.color.systemThemeColor.primary)};
   color: ${({ theme, color }) => (color ? theme.color[color].onPrimary : theme.color.systemThemeColor.onPrimary)};
   border: none;
   border-radius: 5px;
