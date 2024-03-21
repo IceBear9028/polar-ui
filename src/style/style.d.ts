@@ -44,7 +44,7 @@ interface Bolds {
 }
 type BoldKeys = keyof Bolds;
 
-type ColorKeys = 'red' | 'blue' | 'green' | 'gray';
+type ColorKeys = 'red' | 'blue' | 'green' | 'gray' | 'systemThemeColor';
 type LightDarkKeys = 'dark' | 'light';
 type componentKeys = 'input' | 'display';
 
