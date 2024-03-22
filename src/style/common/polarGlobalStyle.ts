@@ -1,8 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
-import PretendardExtraLight from '@assets/fonts/pretendard/Pretendard-ExtraLight.woff2';
-import PretendardRegular from '@assets/fonts/pretendard/Pretendard-Regular.woff2';
-import PretendardBold from '@assets/fonts/pretendard/Pretendard-Bold.woff2';
-import PretendardExtraBold from '@assets/fonts/pretendard/Pretendard-ExtraBold.woff2';
+import PretendardExtraLight from '../../assets/fonts/pretendard/Pretendard-ExtraLight.woff2';
+import PretendardRegular from '../../assets/fonts/pretendard/Pretendard-Regular.woff2';
+import PretendardBold from '../../assets/fonts/pretendard/Pretendard-Bold.woff2';
+import PretendardExtraBold from '../../assets/fonts/pretendard/Pretendard-ExtraBold.woff2';
 
 /** app.tsx 파일 내에서 <PolarGlobalStyle> 을 적용
  */

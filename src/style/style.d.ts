@@ -3,7 +3,41 @@ import 'styled-components';
 // styled-component 의 DefaultTheme 을 재선언
 // styled component 의 ThemeProvider 기능을 사용하기 위한 목적
 declare module 'styled-components' {
-  export interface DefaultTheme extends SystemStyle {}
+  export interface DefaultTheme extends DesignToken {}
+}
+
+interface DesignToken {
+  base: any;
+  system: SystemToken;
+  component: ComponentToken;
+}
+
+/** 시스템 전체 스타일 토큰을 가짐
+ * StyledComponent 의 ThemeProvider 전체 스타일에 적용
+ * */
+interface SystemToken {
+  padding: SystemPadding;
+  fontSize: SystemFontSize;
+  color: SystemColor;
+}
+
+/** 컴포넌트 계층 토큰 타입
+ * 1. button : 버튼 컴포넌트의 토큰 타입을 지정
+ */
+interface ComponentToken {
+  button: ComponentButton;
+}
+
+interface ComponentButtonColor {
+  [Color in ColorKeys]: Variants;
+}
+interface ComponentButtonPadding extends SystemPadding {}
+interface ComponentButtonFontSize extends SystemFontSize {}
+
+interface ComponentButton {
+  color: ComponentButtonColor;
+  padding: ComponentButtonPadding;
+  fontSize: ComponentButtonFontSize;
 }
 
 interface HeaderSize {
@@ -44,13 +78,22 @@ interface Bolds {
 }
 type BoldKeys = keyof Bolds;
 
-type ColorKeys = 'red' | 'blue' | 'green' | 'gray' | 'systemThemeColor';
+interface Colors {
+  red: string;
+  blue: string;
+  gray: string;
+  green: string;
+  systemThemeColor: string;
+}
+
+type ColorKeys = keyof Colors;
+
 type LightDarkKeys = 'dark' | 'light';
 type componentKeys = 'input' | 'display';
 
 type ButtonSize = keyof Omit<Size, 'default'>;
 
-interface ButtonVariants extends Variants {}
+type ButtonVariants = keyof Variants;
 type ButtonColorKeys = ColorKeys;
 
 /** Padding 관련 스타일 지정
@@ -80,15 +123,15 @@ interface SystemFontSize {
   text: Size;
 }
 
-interface ThemeColors {
+interface SystemThemeColors {
   common: DetailCommonColor;
-  blue: DetailColorTheme;
-  red: DetailColorTheme;
-  gray: DetailColorTheme;
-  green: DetailColorTheme;
+  blue: SystemDetailColorTheme;
+  red: SystemDetailColorTheme;
+  gray: SystemDetailColorTheme;
+  green: SystemDetailColorTheme;
 }
 
-interface DetailColorTheme {
+interface SystemDetailColorTheme {
   primary: string;
   onPrimary: string;
   primaryVariant: stirng;
@@ -124,15 +167,6 @@ interface DetailCommonColor {
   text: string;
 }
 
-interface SystemColor extends ThemeColors {
-  systemThemeColor: DetailColorTheme;
-}
-
-/** 시스템 전체 스타일 토큰을 가짐
- * StyledComponent 의 ThemeProvider 전체 스타일에 적용
- * */
-interface SystemStyle {
-  padding: SystemPadding;
-  fontSize: SystemFontSize;
-  color: SystemColor;
+interface SystemColor extends SystemThemeColors {
+  systemThemeColor: SystemDetailColorTheme;
 }

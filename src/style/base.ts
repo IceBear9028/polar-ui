@@ -189,7 +189,7 @@ const fontWeight = {
   xbold: '800px',
 };
 
-export const base = {
+export const baseToken = {
   palette,
   padding,
   fontSize,

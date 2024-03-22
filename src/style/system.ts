@@ -1,23 +1,23 @@
-import { base } from './base';
-import { ColorKeys, HeaderSize, Size, SizeKeys, SystemColor, SystemPadding, SystemStyle, ThemeColors } from '@style/style';
+import { baseToken } from './base.ts';
+import { ColorKeys, HeaderSize, Size, SizeKeys, SystemColor, SystemPadding, SystemToken, SystemThemeColors } from './style';
 
 const padding: SystemPadding = {
   input: {
     xs: {
-      horizon: base.padding.padding600,
-      vertical: base.padding.padding300,
+      horizon: baseToken.padding.padding600,
+      vertical: baseToken.padding.padding300,
     },
     sm: {
-      horizon: base.padding.padding700,
-      vertical: base.padding.padding400,
+      horizon: baseToken.padding.padding700,
+      vertical: baseToken.padding.padding400,
     },
     md: {
-      horizon: base.padding.padding800,
-      vertical: base.padding.padding500,
+      horizon: baseToken.padding.padding800,
+      vertical: baseToken.padding.padding500,
     },
     lg: {
-      horizon: base.padding.padding900,
-      vertical: base.padding.padding600,
+      horizon: baseToken.padding.padding900,
+      vertical: baseToken.padding.padding600,
     },
   },
 };
@@ -29,7 +29,6 @@ export function systemPadding(size: SizeKeys) {
   for (let comp of componentNames) {
     paddingObj[comp] = { ...padding[comp], default: padding[comp][size] };
   }
-  console.log(paddingObj);
   return paddingObj;
 }
 
@@ -58,143 +57,143 @@ export function systemTextFont(size: SizeKeys) {
   };
 }
 
-export const lightTheme: ThemeColors = {
+export const lightTheme: SystemThemeColors = {
   common: {
-    background: base.palette.backgroundLight,
-    surface: base.palette.white,
-    surfaceVariant: base.palette.gray200Soft,
-    outlined: base.palette.gray300Soft,
-    outlinedVariant: base.palette.gray300Bright,
-    elementLow: base.palette.gray25Bright,
-    element: base.palette.gray50Bright,
-    elementHigh: base.palette.gray150Bright,
-    elementHighest: base.palette.gray200Bright,
-    text: base.palette.black,
-    error: base.palette.redA200Bright,
-    onError: base.palette.white,
-    caution: base.palette.orangeA100Bright,
-    onCaution: base.palette.white,
-    info: base.palette.blueA100Bright,
-    success: base.palette.green300Bright,
+    background: baseToken.palette.backgroundLight,
+    surface: baseToken.palette.white,
+    surfaceVariant: baseToken.palette.gray200Soft,
+    outlined: baseToken.palette.gray300Soft,
+    outlinedVariant: baseToken.palette.gray300Bright,
+    elementLow: baseToken.palette.gray25Bright,
+    element: baseToken.palette.gray50Bright,
+    elementHigh: baseToken.palette.gray150Bright,
+    elementHighest: baseToken.palette.gray200Bright,
+    text: baseToken.palette.black,
+    error: baseToken.palette.redA200Bright,
+    onError: baseToken.palette.white,
+    caution: baseToken.palette.orangeA100Bright,
+    onCaution: baseToken.palette.white,
+    info: baseToken.palette.blueA100Bright,
+    success: baseToken.palette.green300Bright,
     disabled: 'rgb(255, 255, 255 / 0.5)',
   },
   blue: {
-    primary: base.palette.blue300Bright,
-    onPrimary: base.palette.white,
-    primaryVariant: base.palette.blue50Bright,
-    onPrimaryVariant: base.palette.blue400Bright,
+    primary: baseToken.palette.blue300Bright,
+    onPrimary: baseToken.palette.white,
+    primaryVariant: baseToken.palette.blue50Bright,
+    onPrimaryVariant: baseToken.palette.blue400Bright,
 
     // 2023.02.29 기준 secondary 색상이 완벽히 지정안됨. 임시로 primary 와 같은 색상 지정
-    secondary: base.palette.blue300Bright,
-    onSecondary: base.palette.white,
-    secondaryVariant: base.palette.blue50Bright,
-    onSecondaryVariant: base.palette.blue400Bright,
+    secondary: baseToken.palette.blue300Bright,
+    onSecondary: baseToken.palette.white,
+    secondaryVariant: baseToken.palette.blue50Bright,
+    onSecondaryVariant: baseToken.palette.blue400Bright,
   },
   red: {
-    primary: base.palette.red300Bright,
-    onPrimary: base.palette.white,
-    primaryVariant: base.palette.red50Bright,
-    onPrimaryVariant: base.palette.redA200Bright,
+    primary: baseToken.palette.red300Bright,
+    onPrimary: baseToken.palette.white,
+    primaryVariant: baseToken.palette.red50Bright,
+    onPrimaryVariant: baseToken.palette.redA200Bright,
 
     // 2023.02.29 기준 secondary 색상이 완벽히 지정안됨. 임시로 primary 와 같은 색상 지정
-    secondary: base.palette.red300Bright,
-    onSecondary: base.palette.white,
-    secondaryVariant: base.palette.red50Bright,
-    onSecondaryVariant: base.palette.redA200Bright,
+    secondary: baseToken.palette.red300Bright,
+    onSecondary: baseToken.palette.white,
+    secondaryVariant: baseToken.palette.red50Bright,
+    onSecondaryVariant: baseToken.palette.redA200Bright,
   },
   gray: {
-    primary: base.palette.gray500Bright,
-    onPrimary: base.palette.white,
-    primaryVariant: base.palette.gray150Bright,
-    onPrimaryVariant: base.palette.black,
+    primary: baseToken.palette.gray500Bright,
+    onPrimary: baseToken.palette.white,
+    primaryVariant: baseToken.palette.gray150Bright,
+    onPrimaryVariant: baseToken.palette.black,
 
     // 2023.02.29 기준 secondary 색상이 완벽히 지정안됨. 임시로 primary 와 같은 색상 지정
-    secondary: base.palette.gray500Bright,
-    onSecondary: base.palette.white,
-    secondaryVariant: base.palette.gray150Bright,
-    onSecondaryVariant: base.palette.black,
+    secondary: baseToken.palette.gray500Bright,
+    onSecondary: baseToken.palette.white,
+    secondaryVariant: baseToken.palette.gray150Bright,
+    onSecondaryVariant: baseToken.palette.black,
   },
   green: {
-    primary: base.palette.green300Bright,
-    onPrimary: base.palette.white,
-    primaryVariant: base.palette.green50Bright,
-    onPrimaryVariant: base.palette.green400Bright,
+    primary: baseToken.palette.green300Bright,
+    onPrimary: baseToken.palette.white,
+    primaryVariant: baseToken.palette.green50Bright,
+    onPrimaryVariant: baseToken.palette.green400Bright,
 
     // 2023.02.29 기준 secondary 색상이 완벽히 지정안됨. 임시로 primary 와 같은 색상 지정
-    secondary: base.palette.green300Bright,
-    onSecondary: base.palette.white,
-    secondaryVariant: base.palette.green50Bright,
-    onSecondaryVariant: base.palette.green400Bright,
+    secondary: baseToken.palette.green300Bright,
+    onSecondary: baseToken.palette.white,
+    secondaryVariant: baseToken.palette.green50Bright,
+    onSecondaryVariant: baseToken.palette.green400Bright,
   },
 };
 
-export const darkTheme: ThemeColors = {
+export const darkTheme: SystemThemeColors = {
   common: {
-    background: base.palette.backgroundDark,
-    surface: base.palette.gray600Bright,
-    surfaceVariant: base.palette.gray600Soft,
-    outlined: base.palette.gray500Soft,
-    outlinedVariant: base.palette.gray300Soft,
-    elementLow: base.palette.gray600Bright,
-    element: base.palette.gray500Bright,
-    elementHigh: base.palette.gray400Bright,
-    elementHighest: base.palette.gray300Bright,
-    text: base.palette.white,
-    error: base.palette.redA200Soft,
-    onError: base.palette.white,
-    caution: base.palette.orangeA100Soft,
-    onCaution: base.palette.white,
-    info: base.palette.blue400Soft,
-    success: base.palette.greenA200Soft,
+    background: baseToken.palette.backgroundDark,
+    surface: baseToken.palette.gray600Bright,
+    surfaceVariant: baseToken.palette.gray600Soft,
+    outlined: baseToken.palette.gray500Soft,
+    outlinedVariant: baseToken.palette.gray300Soft,
+    elementLow: baseToken.palette.gray600Bright,
+    element: baseToken.palette.gray500Bright,
+    elementHigh: baseToken.palette.gray400Bright,
+    elementHighest: baseToken.palette.gray300Bright,
+    text: baseToken.palette.white,
+    error: baseToken.palette.redA200Soft,
+    onError: baseToken.palette.white,
+    caution: baseToken.palette.orangeA100Soft,
+    onCaution: baseToken.palette.white,
+    info: baseToken.palette.blue400Soft,
+    success: baseToken.palette.greenA200Soft,
     disabled: 'rgb(0, 0, 0 / 0.5)',
   },
   blue: {
-    primary: base.palette.blue300Soft,
-    onPrimary: base.palette.white,
-    primaryVariant: base.palette.blue700Soft,
-    onPrimaryVariant: base.palette.blue200Soft,
+    primary: baseToken.palette.blue300Soft,
+    onPrimary: baseToken.palette.white,
+    primaryVariant: baseToken.palette.blue700Soft,
+    onPrimaryVariant: baseToken.palette.blue200Soft,
 
     // 2023.02.29 기준 secondary 색상이 완벽히 지정안됨. 임시로 primary 와 같은 색상 지정
-    secondary: base.palette.blue300Soft,
-    onSecondary: base.palette.white,
-    secondaryVariant: base.palette.blue700Soft,
-    onSecondaryVariant: base.palette.blue200Soft,
+    secondary: baseToken.palette.blue300Soft,
+    onSecondary: baseToken.palette.white,
+    secondaryVariant: baseToken.palette.blue700Soft,
+    onSecondaryVariant: baseToken.palette.blue200Soft,
   },
   red: {
-    primary: base.palette.red300Soft,
-    onPrimary: base.palette.white,
-    primaryVariant: base.palette.red500Soft,
-    onPrimaryVariant: base.palette.red100Bright,
+    primary: baseToken.palette.red300Soft,
+    onPrimary: baseToken.palette.white,
+    primaryVariant: baseToken.palette.red500Soft,
+    onPrimaryVariant: baseToken.palette.red100Bright,
 
     // 2023.02.29 기준 secondary 색상이 완벽히 지정안됨. 임시로 primary 와 같은 색상 지정
-    secondary: base.palette.red300Soft,
-    onSecondary: base.palette.white,
-    secondaryVariant: base.palette.red500Soft,
-    onSecondaryVariant: base.palette.red100Bright,
+    secondary: baseToken.palette.red300Soft,
+    onSecondary: baseToken.palette.white,
+    secondaryVariant: baseToken.palette.red500Soft,
+    onSecondaryVariant: baseToken.palette.red100Bright,
   },
   gray: {
-    primary: base.palette.white,
-    onPrimary: base.palette.black,
-    primaryVariant: base.palette.gray500Bright,
-    onPrimaryVariant: base.palette.white,
+    primary: baseToken.palette.white,
+    onPrimary: baseToken.palette.black,
+    primaryVariant: baseToken.palette.gray500Bright,
+    onPrimaryVariant: baseToken.palette.white,
 
     // 2023.02.29 기준 secondary 색상이 완벽히 지정안됨. 임시로 primary 와 같은 색상 지정
-    secondary: base.palette.white,
-    onSecondary: base.palette.black,
-    secondaryVariant: base.palette.gray500Bright,
-    onSecondaryVariant: base.palette.white,
+    secondary: baseToken.palette.white,
+    onSecondary: baseToken.palette.black,
+    secondaryVariant: baseToken.palette.gray500Bright,
+    onSecondaryVariant: baseToken.palette.white,
   },
   green: {
-    primary: base.palette.green300Soft,
-    onPrimary: base.palette.white,
-    primaryVariant: base.palette.green600Soft,
-    onPrimaryVariant: base.palette.green200Soft,
+    primary: baseToken.palette.green300Soft,
+    onPrimary: baseToken.palette.white,
+    primaryVariant: baseToken.palette.green600Soft,
+    onPrimaryVariant: baseToken.palette.green200Soft,
 
     // 2023.02.29 기준 secondary 색상이 완벽히 지정안됨. 임시로 primary 와 같은 색상 지정
-    secondary: base.palette.green300Soft,
-    onSecondary: base.palette.white,
-    secondaryVariant: base.palette.green600Soft,
-    onSecondaryVariant: base.palette.green200Soft,
+    secondary: baseToken.palette.green300Soft,
+    onSecondary: baseToken.palette.white,
+    secondaryVariant: baseToken.palette.green600Soft,
+    onSecondaryVariant: baseToken.palette.green200Soft,
   },
 };
 
@@ -220,7 +219,7 @@ export function systemLightColor(color: ColorKeys = 'green'): SystemColor {
   };
 }
 
-export function systemStyle(theme: 'dark' | 'light' = 'light', size: SizeKeys = 'md'): SystemStyle {
+export function systemStyle(theme: 'dark' | 'light' = 'light', size: SizeKeys): SystemToken {
   const systemColor = theme === 'light' ? systemLightColor() : systemDarkColor();
   const systemPaddings = systemPadding(size);
   const systemFontSize = {

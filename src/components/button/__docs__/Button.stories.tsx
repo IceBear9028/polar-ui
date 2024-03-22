@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Example from './Example';
-import { ColorKeys, SizeKeys } from '../../../style/style';
+import { ColorKeys, SizeKeys, VariantKeys } from '../../../style/style';
 
 /** Button 의 컨트롤 패널의 options 값 지정
  * */
 const colorOprions: ColorKeys[] = ['red', 'green', 'blue', 'gray'];
 const sizeOptions: SizeKeys[] = ['xs', 'sm', 'md', 'lg'];
+const variantOptions: VariantKeys[] = ['filledContrast', 'filled', 'outlined'];
 
 const meta: Meta<typeof Example> = {
   title: 'Button',
@@ -17,6 +18,10 @@ const meta: Meta<typeof Example> = {
     },
     size: {
       options: sizeOptions,
+      control: { type: 'select' },
+    },
+    variants: {
+      options: variantOptions,
       control: { type: 'select' },
     },
   },

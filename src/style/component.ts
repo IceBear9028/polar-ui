@@ -1,8 +1,13 @@
+import { ColorKeys, ComponentButtonColor, SystemColor, SystemFontSize, SystemPadding, SystemToken } from '@style/style';
+
+/** 0. 공통 스타일 지정함수
+ * variant 별 스타일 지정
+ * input 은
+ **/
+
 /** 1. Button 스타일
  * */
-import { ColorKeys, SystemColor, SystemStyle } from '@style/style';
-
-function ButtonColor(systemColor: SystemColor) {
+function ButtonColor(systemColor: SystemColor): ComponentButtonColor {
   function filledContrastColor(color: ColorKeys) {
     return {
       background: systemColor[color].primary,
@@ -53,12 +58,24 @@ function ButtonColor(systemColor: SystemColor) {
   };
 }
 
-export function componentStyle(systemStyle: SystemStyle) {
+function ButtonPadding(systemStyle: SystemPadding) {
+  return {
+    ...systemStyle,
+  };
+}
+
+function ButtonFontSize(fontStyle: SystemFontSize) {
+  return {
+    ...fontStyle,
+  };
+}
+
+export function componentStyle(systemStyle: SystemToken) {
   return {
     button: {
       color: ButtonColor(systemStyle.color),
-      padding: '여기에 사이즈별로 패딩사이즈 작성할 것',
-      fontSize: '여기에 사이즈별로 폰트 사이즈 적용할 것',
+      padding: ButtonPadding(systemStyle.padding),
+      fontSize: ButtonFontSize(systemStyle.fontSize),
     },
   };
 }

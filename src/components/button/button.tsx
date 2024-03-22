@@ -17,23 +17,12 @@ interface ButtonActions {
 
 export interface ButtonProps extends ButtonStyles, ButtonTypes, ButtonActions {}
 
-const ButtonVariants = {
-  filledContrast: {
-    background: '',
-    color: '',
-  },
-  filled: {
-    background: '',
-    color: '',
-  },
-  outliend: {
-    background: '',
-    color: '',
-  },
-};
-
-const Button: FC<ButtonProps> = (props) => {
-  return <StyledButton {...props}>{props.text}</StyledButton>;
+const Button: FC<ButtonProps> = ({ variants = 'filledContrast', ...props }) => {
+  return (
+    <StyledButton variants={variants} {...props}>
+      {props.text}
+    </StyledButton>
+  );
 };
 
 /** styled-component 의 ThemeProvide 를 이용한 테마 변경 사안 적용중
@@ -44,9 +33,9 @@ const StyledButton = styled.button<ButtonProps>`
   gap: 5px;
 
   // size 에 관련된 스타일 지정
-  font-size: ${({ theme, size }) => (size ? theme.fontSize.text[size] : theme.fontSize.text.default)};
+  font-size: ${({ theme, size }) => (size ? theme.component.button.fontSize.text[size] : theme.component.button.fontSize.text.default)};
   padding: ${({ theme, size }) => {
-    const resultPadding = size ? theme.padding.input[size] : theme.padding.input.default;
+    const resultPadding = size ? theme.component.button.padding.input[size] : theme.component.button.padding.input.default;
     return `${resultPadding.vertical} ${resultPadding.horizon}`;
   }};
 
@@ -57,8 +46,11 @@ const StyledButton = styled.button<ButtonProps>`
   // filled -> background : primaryVariants, color : onPrimaryVariants
   // outlined -> background : none, border :
 
-  background-color: ${({ theme, color, variants }) => (color ? theme.color[color].primary : theme.color.systemThemeColor.primary)};
-  color: ${({ theme, color }) => (color ? theme.color[color].onPrimary : theme.color.systemThemeColor.onPrimary)};
+  background-color: ${({ theme, color, variants }) =>
+    theme.component.button.color[color ? color : 'systemThemeColor'][variants].background};
+  color: ${({ theme, color, variants }) => theme.component.button.color[color ? color : 'systemThemeColor'][variants].color};
+  box-shadow: 0 0 0 2px ${({ theme, color, variants }) => theme.component.button.color[color ? color : 'systemThemeColor'][variants].border};
+
   border: none;
   border-radius: 5px;
   cursor: pointer;
