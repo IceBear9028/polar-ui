@@ -24,7 +24,7 @@ function ButtonColor(systemColor: SystemColor): ComponentButtonColor {
   }
   function outlinedColor(color: ColorKeys) {
     return {
-      background: 'none',
+      background: 'transparent',
       color: systemColor[color].primary,
       border: systemColor[color].primary,
     };
@@ -58,9 +58,9 @@ function ButtonColor(systemColor: SystemColor): ComponentButtonColor {
   };
 }
 
-function ButtonPadding(systemStyle: SystemPadding) {
+function ButtonPadding(systemToken: SystemPadding) {
   return {
-    ...systemStyle,
+    ...systemToken,
   };
 }
 
@@ -70,12 +70,12 @@ function ButtonFontSize(fontStyle: SystemFontSize) {
   };
 }
 
-export function componentStyle(systemStyle: SystemToken) {
+export function componentToken(systemToken: SystemToken) {
   return {
     button: {
-      color: ButtonColor(systemStyle.color),
-      padding: ButtonPadding(systemStyle.padding),
-      fontSize: ButtonFontSize(systemStyle.fontSize),
+      color: ButtonColor(systemToken.color),
+      padding: ButtonPadding(systemToken.padding),
+      fontSize: ButtonFontSize(systemToken.fontSize),
     },
   };
 }

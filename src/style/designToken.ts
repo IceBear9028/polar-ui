@@ -1,6 +1,6 @@
 import { DesignToken, SizeKeys } from './style';
-import { systemStyle } from './system.ts';
-import { componentStyle } from './component.ts';
+import { systemToken } from './system.ts';
+import { componentToken } from './component.ts';
 import { baseToken } from './base.ts';
 
 /** 전체 디자인 토큰을 담당하는 객체
@@ -11,7 +11,7 @@ import { baseToken } from './base.ts';
 export function designToken(theme: 'dark' | 'light' = 'light', size: SizeKeys = 'md'): DesignToken {
   return {
     base: baseToken,
-    system: systemStyle(theme, size),
-    component: componentStyle(systemStyle(theme, size)),
+    system: systemToken(theme, size),
+    component: componentToken(systemToken(theme, size)),
   };
 }

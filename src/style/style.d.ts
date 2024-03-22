@@ -28,17 +28,23 @@ interface ComponentToken {
   button: ComponentButton;
 }
 
-interface ComponentButtonColor {
-  [Color in ColorKeys]: Variants;
-}
-interface ComponentButtonPadding extends SystemPadding {}
-interface ComponentButtonFontSize extends SystemFontSize {}
-
 interface ComponentButton {
   color: ComponentButtonColor;
   padding: ComponentButtonPadding;
   fontSize: ComponentButtonFontSize;
 }
+
+type ComponentButtonColor = {
+  [Color in ColorKeys]: {
+    [Variant in keyof Variants]: {
+      color: string;
+      border: string;
+      background: string;
+    };
+  };
+};
+type ComponentButtonPadding = SystemPadding & {};
+type ComponentButtonFontSize = SystemFontSize & {};
 
 interface HeaderSize {
   h1: string;
@@ -53,7 +59,7 @@ type HeaderSizeKeys = keyof HeaderSize;
  * default : 컴포넌트의 크기를 지정하지 않았을 때의 시스템이 지정한 기본크기
  */
 interface Size {
-  default?: string;
+  default: string;
   xs: string;
   sm: string;
   md: string;
@@ -103,14 +109,9 @@ interface Padding {
   vertical: string;
 }
 
-interface PaddingElement extends Size {
-  default: Padding;
-  xs: Padding;
-  sm: Padding;
-  md: Padding;
-  lg: Padding;
-  // [index: SizeKeys]: Padding;
-}
+type PaddingElement = {
+  [size in keyof Size]: Padding;
+};
 
 interface SystemPadding {
   input: PaddingElement;
@@ -121,6 +122,10 @@ interface SystemPadding {
 interface SystemFontSize {
   header: HeaderSize;
   text: Size;
+}
+
+interface SystemColor extends SystemThemeColors {
+  systemThemeColor: SystemDetailColorTheme;
 }
 
 interface SystemThemeColors {
@@ -134,7 +139,7 @@ interface SystemThemeColors {
 interface SystemDetailColorTheme {
   primary: string;
   onPrimary: string;
-  primaryVariant: stirng;
+  primaryVariant: string;
   onPrimaryVariant: string;
   secondary: string;
   onSecondary: string;
@@ -165,8 +170,4 @@ interface DetailCommonColor {
   outlined: string;
   outlinedVariant: string;
   text: string;
-}
-
-interface SystemColor extends SystemThemeColors {
-  systemThemeColor: SystemDetailColorTheme;
 }

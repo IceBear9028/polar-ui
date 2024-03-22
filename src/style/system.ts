@@ -219,7 +219,7 @@ export function systemLightColor(color: ColorKeys = 'green'): SystemColor {
   };
 }
 
-export function systemStyle(theme: 'dark' | 'light' = 'light', size: SizeKeys): SystemToken {
+export function systemToken(theme: 'dark' | 'light' = 'light', size: SizeKeys): SystemToken {
   const systemColor = theme === 'light' ? systemLightColor() : systemDarkColor();
   const systemPaddings = systemPadding(size);
   const systemFontSize = {

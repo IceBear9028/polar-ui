@@ -36,6 +36,7 @@ export const Green: ButtonStory = {
     text: 'button',
     color: 'green',
     size: `md`,
+    variants: 'filledContrast',
     onClick: () => console.log('잘 작동함'),
   },
 };
@@ -45,6 +46,7 @@ export const Blue: ButtonStory = {
     text: 'button',
     color: 'blue',
     size: 'md',
+    variants: 'filledContrast',
     onClick: () => console.log('잘 작동함'),
   },
 };
@@ -54,6 +56,7 @@ export const Red: ButtonStory = {
     text: 'button',
     color: 'red',
     size: 'md',
+    variants: 'filledContrast',
     onClick: () => console.log('잘 작동함'),
   },
 };
@@ -63,6 +66,7 @@ export const Gray: ButtonStory = {
     text: 'button',
     color: 'gray',
     size: 'md',
+    variants: 'filledContrast',
     onClick: () => console.log('잘 작동함'),
   },
 };
