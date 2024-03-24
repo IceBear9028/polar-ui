@@ -12,6 +12,6 @@ export function designToken(theme: 'dark' | 'light' = 'light', size: SizeKeys = 
   return {
     base: baseToken,
     system: systemToken(theme, size),
-    component: componentToken(systemToken(theme, size)),
+    component: componentToken(systemToken(theme, size), baseToken),
   };
 }

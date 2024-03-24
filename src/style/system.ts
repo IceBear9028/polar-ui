@@ -1,5 +1,5 @@
 import { baseToken } from './base.ts';
-import { ColorKeys, HeaderSize, Size, SizeKeys, SystemColor, SystemPadding, SystemToken, SystemThemeColors } from './style';
+import { ColorKeys, HeaderSize, CommonSize, SizeKeys, SystemColor, SystemPadding, SystemToken, SystemThemeColors } from './style';
 
 const padding: SystemPadding = {
   input: {
@@ -35,7 +35,7 @@ export function systemPadding(size: SizeKeys) {
 /** B. fontSize
  */
 
-const textFontSize: Size = {
+const textFontSize: CommonSize = {
   xs: '11px',
   sm: '13px',
   md: '15px',

@@ -1,19 +1,22 @@
 import { FC } from 'react';
 import Button, { ButtonProps } from '../button.tsx';
+import styled from 'styled-components';
 
-const Example: FC<ButtonProps> = ({ onClick = () => {}, size = 'sm', text = 'Button', color, variants }) => {
+const Example: FC<ButtonProps> = ({ onClick, size, text, color, variants }) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-      }}
-    >
+    <Background>
       <Button size={size} text={text} onClick={onClick} color={color} variants={variants} />
-    </div>
+    </Background>
   );
 };
+
+const Background = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+  border-radius: 20px;
+  background: ${({ theme }) => theme.system.color.common.background};
+`;
 
 export default Example;

@@ -1,13 +1,21 @@
-import { ColorKeys, ComponentButtonColor, SystemColor, SystemFontSize, SystemPadding, SystemToken } from '@style/style';
+import {
+  BaseToken,
+  ColorKeys,
+  CommonSize,
+  ComponentButtonColor,
+  SizeKeys,
+  SystemColor,
+  SystemFontSize,
+  SystemPadding,
+  SystemToken,
+} from '@style/style';
 
 /** 0. 공통 스타일 지정함수
  * variant 별 스타일 지정
- * input 은
+ * fontSize 는 모든 컴포넌트에서 공통
  **/
 
-/** 1. Button 스타일
- * */
-function ButtonColor(systemColor: SystemColor): ComponentButtonColor {
+function CommonColor(systemColor: SystemColor): ComponentButtonColor {
   function filledContrastColor(color: ColorKeys) {
     return {
       background: systemColor[color].primary,
@@ -51,12 +59,21 @@ function ButtonColor(systemColor: SystemColor): ComponentButtonColor {
       outlined: outlinedColor('blue'),
     },
     gray: {
+      outlined: outlinedColor('gray'),
       filledContrast: filledContrastColor('gray'),
       filled: filledColor('gray'),
-      outlined: outlinedColor('gray'),
     },
   };
 }
+
+function CommonFontSize(fontStyle: SystemFontSize) {
+  return {
+    ...fontStyle,
+  };
+}
+
+/** 1. Button 스타일
+ * */
 
 function ButtonPadding(systemToken: SystemPadding) {
   return {
@@ -64,18 +81,34 @@ function ButtonPadding(systemToken: SystemPadding) {
   };
 }
 
-function ButtonFontSize(fontStyle: SystemFontSize) {
+/** 2. Chip 컴포넌트 토큰
+ * 알림1 : Chip 에 대한 padding 속성의 System 토큰이 적용되지 않은 상태
+ * 알림2 : 추후 Chip 에 대한 padding 속성 지정시 수정 필요
+ */
+function ChipPadding(baseToken: BaseToken) {
   return {
-    ...fontStyle,
+    sm: {
+      horizon: baseToken.padding.padding700,
+      vertical: baseToken.padding.padding300,
+    },
+    md: {
+      horizon: baseToken.padding.padding600,
+      vertical: baseToken.padding.padding200,
+    },
   };
 }
 
-export function componentToken(systemToken: SystemToken) {
+export function componentToken(systemToken: SystemToken, baseToken: BaseToken) {
   return {
     button: {
-      color: ButtonColor(systemToken.color),
+      color: CommonColor(systemToken.color),
       padding: ButtonPadding(systemToken.padding),
-      fontSize: ButtonFontSize(systemToken.fontSize),
+      fontSize: CommonFontSize(systemToken.fontSize),
+    },
+    chip: {
+      color: CommonColor(systemToken.color),
+      padding: ChipPadding(baseToken),
+      fontSize: CommonFontSize(systemToken.fontSize),
     },
   };
 }

@@ -58,7 +58,7 @@ type HeaderSizeKeys = keyof HeaderSize;
 /** size : text 가 포함되어있는 컴포넌트들의 크기 모임
  * default : 컴포넌트의 크기를 지정하지 않았을 때의 시스템이 지정한 기본크기
  */
-interface Size {
+interface CommonSize {
   default: string;
   xs: string;
   sm: string;
@@ -66,7 +66,7 @@ interface Size {
   lg: string;
 }
 // type SizeKeys = 'xs' | 'sm' | 'md' | 'lg';
-type SizeKeys = keyof Omit<Size, 'default'>;
+type SizeKeys = keyof Omit<CommonSize, 'default'>;
 
 interface Variants {
   filledContrast: string;
@@ -75,14 +75,14 @@ interface Variants {
 }
 type VariantKeys = keyof Variants;
 
-interface Bolds {
+interface CommonBolds {
   light: string;
   regular: string;
   sbold: string;
   bold: string;
   xbold: string;
 }
-type BoldKeys = keyof Bolds;
+type BoldKeys = keyof CommonBolds;
 
 interface Colors {
   red: string;
@@ -97,7 +97,7 @@ type ColorKeys = keyof Colors;
 type LightDarkKeys = 'dark' | 'light';
 type componentKeys = 'input' | 'display';
 
-type ButtonSize = keyof Omit<Size, 'default'>;
+type ButtonSize = keyof Omit<CommonSize, 'default'>;
 
 type ButtonVariants = keyof Variants;
 type ButtonColorKeys = ColorKeys;
@@ -110,7 +110,7 @@ interface Padding {
 }
 
 type PaddingElement = {
-  [size in keyof Size]: Padding;
+  [size in keyof CommonSize]: Padding;
 };
 
 interface SystemPadding {
@@ -121,7 +121,7 @@ interface SystemPadding {
  */
 interface SystemFontSize {
   header: HeaderSize;
-  text: Size;
+  text: CommonSize;
 }
 
 interface SystemColor extends SystemThemeColors {
@@ -170,4 +170,43 @@ interface DetailCommonColor {
   outlined: string;
   outlinedVariant: string;
   text: string;
+}
+
+interface BaseToken {
+  palette: {
+    [index: string]: string;
+  };
+  padding: BasePadding;
+  fontSize: BaseFontSize;
+  fontWeight: CommonBolds;
+  border: BaseBorder;
+}
+
+interface BaseFontSize {
+  header: {
+    [headerSize in HeaderSizeKeys]: string;
+  };
+  icon: {
+    [TextSize in keyof Omit<CommonSize, 'default'>]: string;
+  };
+  text: {
+    [TextSize in keyof Omit<CommonSize, 'default'>]: string;
+  };
+}
+
+interface BasePadding {
+  padding100: string;
+  padding200: string;
+  padding300: string;
+  padding400: string;
+  padding500: string;
+  padding600: string;
+  padding700: string;
+  padding800: string;
+  padding900: string;
+}
+
+interface BaseBorder {
+  border100: string;
+  border200: string;
 }

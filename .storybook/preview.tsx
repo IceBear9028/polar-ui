@@ -9,26 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import PolarGlobalStyle from '../src/style/common/polarGlobalStyle';
 import { designToken } from '../src/style/designToken';
 
-const preview: Preview = {
-  parameters: {
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
-      },
-    },
-  },
-};
-
-export const decorators = [
-  // (Story) => {
-  //   const { colorTheme, darkTheme } = usePolarThemeStore();
-  //   return (
-  //     <ThemeProvider theme={darkTheme === 'light' ? systemLightColor(colorTheme) : systemDarkColor(colorTheme)}>
-  //       <Story />
-  //     </ThemeProvider>
-  //   );
-  // },
+const decorators = [
   withThemeFromJSXProvider({
     themes: {
       light: designToken('light'),
@@ -36,8 +17,27 @@ export const decorators = [
     },
     defaultTheme: 'light',
     Provider: ThemeProvider,
-    PolarGlobalStyle,
+    GlobalStyles: PolarGlobalStyle,
   }),
 ];
+
+const preview: Preview = {
+  decorators,
+  parameters: {
+    // controls: {
+    //   matchers: {
+    //     color: /(background|color)$/i,
+    //     date: /Date$/i,
+    //   },
+    // },
+    backgrounds: {
+      default: 'light',
+      values: [
+        { name: 'light', value: '#ffffff' },
+        { name: 'dark', value: '#000000' },
+      ],
+    },
+  },
+};
 
 export default preview;
