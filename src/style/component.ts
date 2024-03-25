@@ -1,21 +1,11 @@
-import {
-  BaseToken,
-  ColorKeys,
-  CommonSize,
-  ComponentButtonColor,
-  SizeKeys,
-  SystemColor,
-  SystemFontSize,
-  SystemPadding,
-  SystemToken,
-} from '@style/style';
+import { BaseToken, ColorKeys, ComponentCommonColor, SystemColor, SystemFontSize, SystemPadding, SystemToken } from '@style/style';
 
 /** 0. 공통 스타일 지정함수
  * variant 별 스타일 지정
  * fontSize 는 모든 컴포넌트에서 공통
  **/
 
-function CommonColor(systemColor: SystemColor): ComponentButtonColor {
+function CommonColor(systemColor: SystemColor): ComponentCommonColor {
   function filledContrastColor(color: ColorKeys) {
     return {
       background: systemColor[color].primary,

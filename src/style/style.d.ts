@@ -23,18 +23,14 @@ interface SystemToken {
 
 /** 컴포넌트 계층 토큰 타입
  * 1. button : 버튼 컴포넌트의 토큰 타입을 지정
+ * 2. chip : chip 컴포넌트의 토큰 타입을 지정
  */
 interface ComponentToken {
   button: ComponentButton;
+  chip: ComponentChip;
 }
-
-interface ComponentButton {
-  color: ComponentButtonColor;
-  padding: ComponentButtonPadding;
-  fontSize: ComponentButtonFontSize;
-}
-
-type ComponentButtonColor = {
+// 0. Component 토큰에서 공통적으로 사용하는 타입 지정
+type ComponentCommonColor = {
   [Color in ColorKeys]: {
     [Variant in keyof Variants]: {
       color: string;
@@ -43,8 +39,28 @@ type ComponentButtonColor = {
     };
   };
 };
+
+// 1. Component 토큰에서 Button 타입
+interface ComponentButton {
+  color: ComponentCommonColor;
+  padding: ComponentButtonPadding;
+  fontSize: ComponentButtonFontSize;
+}
 type ComponentButtonPadding = SystemPadding & {};
 type ComponentButtonFontSize = SystemFontSize & {};
+
+// 2. Component 토큰에서 Chip 타입
+interface ComponentChip {
+  color: ComponentCommonColor;
+  padding: ComponentChipPadding;
+  fontSize: ComponentChipFontSize;
+}
+
+type ComponentChipPadding = {
+  sm: Padding;
+  md: Padding;
+};
+type ComponentChipFontSize = SystemFontSize & {};
 
 interface HeaderSize {
   h1: string;
