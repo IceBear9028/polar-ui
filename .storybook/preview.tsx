@@ -24,12 +24,12 @@ const decorators = [
 const preview: Preview = {
   decorators,
   parameters: {
-    // controls: {
-    //   matchers: {
-    //     color: /(background|color)$/i,
-    //     date: /Date$/i,
-    //   },
-    // },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
+    },
     backgrounds: {
       default: 'light',
       values: [

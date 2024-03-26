@@ -2,24 +2,24 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { ColorKeys, CommonSize, VariantKeys } from '@style/style';
 
-interface ChipProps {
+export interface ChipProps {
   color?: ColorKeys;
-  variant?: VariantKeys;
+  variants?: VariantKeys;
   name: string;
   icon: React.JSX.Element;
   size?: keyof Omit<CommonSize, 'default' | 'xs' | 'lg'>;
   onDelete?: () => void;
-  onClick?: () => {};
+  onClick?: () => void;
 }
 
-interface StyledChipProps extends Pick<ChipProps, 'color' | 'variant' | 'size'> {
+interface StyledChipProps extends Pick<ChipProps, 'color' | 'variants' | 'size'> {
   size: keyof Omit<CommonSize, 'default' | 'xs' | 'lg'>;
   variant: VariantKeys;
 }
 
-const Chip: FC<ChipProps> = ({ variant = 'filledContrast', size = 'md', color, name }) => {
+const Chip: FC<ChipProps> = ({ variants = 'filledContrast', size = 'md', color, name }) => {
   return (
-    <ChipContainer color={color} variant={variant} size={size}>
+    <ChipContainer color={color} variant={variants} size={size}>
       {name}
     </ChipContainer>
   );
