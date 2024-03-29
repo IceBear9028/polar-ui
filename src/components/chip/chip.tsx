@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { ColorKeys, CommonSize, VariantKeys } from '@style/style';
+import { ChipCloseIcon } from '../icon/icon.tsx';
 
 export interface ChipProps {
   color?: ColorKeys;
@@ -17,10 +18,15 @@ interface StyledChipProps extends Pick<ChipProps, 'color' | 'variants' | 'size'>
   variant: VariantKeys;
 }
 
-const Chip: FC<ChipProps> = ({ variants = 'filledContrast', size = 'md', color, name }) => {
+const Chip: FC<ChipProps> = ({ variants = 'filledContrast', size = 'md', color, name, onDelete }) => {
   return (
     <ChipContainer color={color} variant={variants} size={size}>
       {name}
+      {onDelete && (
+        <IconBtn onClick={onDelete}>
+          <ChipCloseIcon color={color} />
+        </IconBtn>
+      )}
     </ChipContainer>
   );
 };
@@ -28,12 +34,13 @@ const Chip: FC<ChipProps> = ({ variants = 'filledContrast', size = 'md', color, 
 const ChipContainer = styled.div<StyledChipProps>`
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 15px;
   border-radius: 20px;
 
   font-size: ${({ theme, size }) => {
     return size ? theme.component.chip.fontSize.text[size] : theme.component.chip.fontSize.text.default;
   }};
+  font-weight: ${({ theme }) => theme.component.chip.fontWeight};
   padding: ${({ theme, size }) => {
     const resultPadding = size ? theme.component.chip.padding[size] : theme.component.chip.padding.md;
     return `${resultPadding.vertical} ${resultPadding.horizon}`;
@@ -52,6 +59,12 @@ const ChipContainer = styled.div<StyledChipProps>`
       const colorKey: ColorKeys = color ? color : 'systemThemeColor';
       return theme.component.button.color[colorKey][variant].border;
     }};
+`;
+
+const IconBtn = styled.button`
+  display: flex;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 export default Chip;

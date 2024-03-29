@@ -1,4 +1,4 @@
-import { DesignToken, SizeKeys } from './style';
+import { DesignToken, HeaderSizeKeys, SizeKeys } from './style';
 import { systemToken } from './system.ts';
 import { componentToken } from './component.ts';
 import { baseToken } from './base.ts';
@@ -8,10 +8,14 @@ import { baseToken } from './base.ts';
  * 2. system : baseToken 토큰에 의미를 부여(시멘틱 토큰이라고 불리기도 함)
  * 3. component : 컴포넌트에 직접적으로 연결되는 토큰
  */
-export function designToken(theme: 'dark' | 'light' = 'light', size: SizeKeys = 'md'): DesignToken {
+export function designToken(
+  theme: 'dark' | 'light' = 'light',
+  defaultSize: SizeKeys = 'md',
+  defaultHeaderSize: HeaderSizeKeys = 'h3',
+): DesignToken {
   return {
     base: baseToken,
-    system: systemToken(theme, size),
-    component: componentToken(systemToken(theme, size), baseToken),
+    system: systemToken(theme, defaultSize, defaultHeaderSize),
+    component: componentToken(systemToken(theme, defaultSize, defaultHeaderSize), baseToken),
   };
 }

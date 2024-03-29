@@ -1,5 +1,5 @@
 import { baseToken } from './base.ts';
-import { ColorKeys, HeaderSize, CommonSize, SizeKeys, SystemColor, SystemPadding, SystemToken, SystemThemeColors } from './style';
+import { ColorKeys, SizeKeys, SystemColor, SystemPadding, SystemToken, SystemThemeColors, HeaderSizeKeys } from './style';
 
 const padding: SystemPadding = {
   input: {
@@ -34,26 +34,22 @@ export function systemPadding(size: SizeKeys) {
 
 /** B. fontSize
  */
-
-const textFontSize: CommonSize = {
-  xs: '11px',
-  sm: '13px',
-  md: '15px',
-  lg: '17px',
-};
-
-const headerFontSize: HeaderSize = {
-  h1: '56px',
-  h2: '48px',
-  h3: '36px',
-  h4: '32px',
-  h5: '24px',
-};
-
+export function systemHeaderSize(size: HeaderSizeKeys) {
+  return {
+    ...baseToken.fontSize.header,
+    default: baseToken.fontSize.header[size],
+  };
+}
 export function systemTextFont(size: SizeKeys) {
   return {
-    ...textFontSize,
-    default: textFontSize[size],
+    ...baseToken.fontSize.text,
+    default: baseToken.fontSize.text[size],
+  };
+}
+export function systemIconSize(size: SizeKeys) {
+  return {
+    ...baseToken.fontSize.icon,
+    default: baseToken.fontSize.icon[size],
   };
 }
 
@@ -219,12 +215,13 @@ export function systemLightColor(color: ColorKeys = 'green'): SystemColor {
   };
 }
 
-export function systemToken(theme: 'dark' | 'light' = 'light', size: SizeKeys): SystemToken {
+export function systemToken(theme: 'dark' | 'light', size: SizeKeys, headerSize: HeaderSizeKeys): SystemToken {
   const systemColor = theme === 'light' ? systemLightColor() : systemDarkColor();
   const systemPaddings = systemPadding(size);
   const systemFontSize = {
-    header: headerFontSize,
+    header: systemHeaderSize(headerSize),
     text: systemTextFont(size),
+    icon: systemIconSize(size),
   };
   return {
     padding: systemPaddings,

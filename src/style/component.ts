@@ -94,11 +94,17 @@ export function componentToken(systemToken: SystemToken, baseToken: BaseToken) {
       color: CommonColor(systemToken.color),
       padding: ButtonPadding(systemToken.padding),
       fontSize: CommonFontSize(systemToken.fontSize),
+      fontWeight: baseToken.fontWeight.medium,
     },
     chip: {
       color: CommonColor(systemToken.color),
       padding: ChipPadding(baseToken),
       fontSize: CommonFontSize(systemToken.fontSize),
+      fontWeight: baseToken.fontWeight.medium,
+    },
+    icon: {
+      color: CommonColor(systemToken.color),
+      size: systemToken.fontSize.icon,
     },
   };
 }

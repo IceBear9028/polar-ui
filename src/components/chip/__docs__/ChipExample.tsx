@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Chip, { ChipProps } from '../chip.tsx';
 import styled from 'styled-components';
 
-const ChipExample: FC<ChipProps> = ({ onClick, onDelete, color, name, variants, size, icon }) => {
+const ChipExample: FC<ChipProps> = ({ onClick, onDelete = () => {}, color, name, variants, size, icon }) => {
   return (
     <Background>
       <Chip size={size} name={name} icon={icon} color={color} variants={variants} onClick={onClick} onDelete={onDelete} />

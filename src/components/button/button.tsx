@@ -34,6 +34,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   font-size: ${({ theme, size }) => {
     return size ? theme.component.button.fontSize.text[size] : theme.component.button.fontSize.text.default;
   }};
+  font-weight: ${({ theme }) => theme.component.button.fontWeight};
   padding: ${({ theme, size }) => {
     const resultPadding = size ? theme.component.button.padding.input[size] : theme.component.button.padding.input.default;
     return `${resultPadding.vertical} ${resultPadding.horizon}`;

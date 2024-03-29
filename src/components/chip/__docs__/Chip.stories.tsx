@@ -3,7 +3,7 @@ import ChipExample from './ChipExample';
 import { ColorKeys, SizeKeys, VariantKeys } from '../../../style/style';
 
 const colorOprions: ColorKeys[] = ['red', 'green', 'blue', 'gray'];
-const sizeOptions: SizeKeys[] = ['xs', 'sm', 'md', 'lg'];
+const sizeOptions: SizeKeys[] = ['sm', 'md'];
 const variantOptions: VariantKeys[] = ['filledContrast', 'filled', 'outlined'];
 
 const ChipMeta: Meta<typeof ChipExample> = {

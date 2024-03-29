@@ -1,3 +1,5 @@
+import { BaseFontWeight } from '@style/style';
+
 const palette = {
   backgroundDark: '#000000',
   backgroundLight: '#fafafa',
@@ -181,12 +183,13 @@ const fontSize = {
   },
 };
 
-const fontWeight = {
-  light: '200px',
-  regular: '400px',
-  sbold: '600px',
-  bold: '700px',
-  xbold: '800px',
+const fontWeight: BaseFontWeight = {
+  light: 200,
+  regular: 400,
+  medium: 500,
+  sbold: 600,
+  bold: 700,
+  xbold: 800,
 };
 
 export const baseToken = {

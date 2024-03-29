@@ -7,7 +7,7 @@ declare module 'styled-components' {
 }
 
 interface DesignToken {
-  base: any;
+  base: BaseToken;
   system: SystemToken;
   component: ComponentToken;
 }
@@ -28,6 +28,7 @@ interface SystemToken {
 interface ComponentToken {
   button: ComponentButton;
   chip: ComponentChip;
+  icon: ComponentIcon;
 }
 // 0. Component 토큰에서 공통적으로 사용하는 타입 지정
 type ComponentCommonColor = {
@@ -45,15 +46,18 @@ interface ComponentButton {
   color: ComponentCommonColor;
   padding: ComponentButtonPadding;
   fontSize: ComponentButtonFontSize;
+  fontWeight: ComponentButtonFontWeight;
 }
 type ComponentButtonPadding = SystemPadding & {};
 type ComponentButtonFontSize = SystemFontSize & {};
+type ComponentButtonFontWeight = number;
 
 // 2. Component 토큰에서 Chip 타입
 interface ComponentChip {
   color: ComponentCommonColor;
   padding: ComponentChipPadding;
   fontSize: ComponentChipFontSize;
+  fontWeight: ComponentChipFontWeight;
 }
 
 type ComponentChipPadding = {
@@ -61,6 +65,14 @@ type ComponentChipPadding = {
   md: Padding;
 };
 type ComponentChipFontSize = SystemFontSize & {};
+type ComponentChipFontWeight = number;
+
+interface ComponentIcon {
+  color: ComponentCommonColor;
+  size: ComponentIconSize;
+}
+
+type ComponentIconSize = CommonSize & {};
 
 interface HeaderSize {
   h1: string;
@@ -138,6 +150,7 @@ interface SystemPadding {
 interface SystemFontSize {
   header: HeaderSize;
   text: CommonSize;
+  icon: CommonSize;
 }
 
 interface SystemColor extends SystemThemeColors {
@@ -194,7 +207,7 @@ interface BaseToken {
   };
   padding: BasePadding;
   fontSize: BaseFontSize;
-  fontWeight: CommonBolds;
+  fontWeight: BaseFontWeight;
   border: BaseBorder;
 }
 
@@ -208,6 +221,15 @@ interface BaseFontSize {
   text: {
     [TextSize in keyof Omit<CommonSize, 'default'>]: string;
   };
+}
+
+interface BaseFontWeight {
+  light: number;
+  regular: number;
+  medium: number;
+  sbold: number;
+  bold: number;
+  xbold: number;
 }
 
 interface BasePadding {
