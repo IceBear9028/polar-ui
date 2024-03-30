@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { ColorKeys, SizeKeys } from '@style/style';
 
-import ChipCloseIconSvg from '../../assets/icon/chipCloseButton.svg';
+import ChipCloseIconSvg from '../../assets/icon/chipCloseButton.svg?react';
 
 interface IconProps {
   size?: SizeKeys;

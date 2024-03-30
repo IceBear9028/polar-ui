@@ -1,4 +1,5 @@
 import dts from 'vite-plugin-dts';
+import svgr from 'vite-plugin-svgr';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
@@ -12,7 +13,8 @@ export default defineConfig({
     sourcemap: true, // Generates source maps for debugging.
     emptyOutDir: true, // Clears the output directory before building.
   },
-  plugins: [dts()], // Uses the 'vite-plugin-dts' plugin for generating TypeScript declaration files (d.ts).
+  // svgr() : svg 파일불러오기 기능
+  plugins: [dts(), svgr()], // Uses the 'vite-plugin-dts' plugin for generating TypeScript declaration files (d.ts).
   resolve: {
     alias: [
       { find: '@assets', replacement: './src/assets' },
