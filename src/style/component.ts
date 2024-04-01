@@ -77,11 +77,11 @@ function ButtonPadding(systemToken: SystemPadding) {
  */
 function ChipPadding(baseToken: BaseToken) {
   return {
-    sm: {
+    md: {
       horizon: baseToken.padding.padding700,
       vertical: baseToken.padding.padding300,
     },
-    md: {
+    sm: {
       horizon: baseToken.padding.padding600,
       vertical: baseToken.padding.padding200,
     },

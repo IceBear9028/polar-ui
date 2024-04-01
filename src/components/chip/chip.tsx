@@ -24,7 +24,7 @@ const Chip: FC<ChipProps> = ({ variants = 'filledContrast', size = 'md', color, 
       {name}
       {onDelete && (
         <IconBtn onClick={onDelete}>
-          <ChipCloseIcon color={color} />
+          <ChipCloseIcon color={color} size={size} />
         </IconBtn>
       )}
     </ChipContainer>
@@ -42,7 +42,7 @@ const ChipContainer = styled.div<StyledChipProps>`
   }};
   font-weight: ${({ theme }) => theme.component.chip.fontWeight};
   padding: ${({ theme, size }) => {
-    const resultPadding = size ? theme.component.chip.padding[size] : theme.component.chip.padding.md;
+    const resultPadding = theme.component.chip.padding[size];
     return `${resultPadding.vertical} ${resultPadding.horizon}`;
   }};
 
