@@ -67,12 +67,40 @@ type ComponentChipPadding = {
 type ComponentChipFontSize = SystemFontSize & {};
 type ComponentChipFontWeight = number;
 
+// 3. Component 토큰에서 Icon 타입
 interface ComponentIcon {
   color: ComponentCommonColor;
   size: ComponentIconSize;
 }
 
 type ComponentIconSize = CommonSize & {};
+
+// 4. Component 토큰에서 inputField 타입
+
+type InputSize = SizeKeys;
+interface InputProps {
+  size: InputSize;
+  color?: ColorKeys;
+  value: string;
+  placeholder?: string;
+  errorMessage?: string;
+  isRequired?: boolean;
+  isDisabled?: boolean;
+  isReadOnly?: boolean;
+}
+interface InputActions {
+  onChange?: (value: string) => void;
+  onBlur?: () => void;
+}
+interface InputStyles {
+  focusColor?: InputColors;
+  size?: InputSize;
+  icon?: React.JSX.Element;
+  isIcon?: boolean;
+  label?: string;
+  isError?: boolean;
+}
+interface InputFieldProps extends InputProps, InputActions {}
 
 interface HeaderSize {
   h1: string;
