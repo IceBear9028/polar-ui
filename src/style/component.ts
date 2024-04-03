@@ -1,4 +1,13 @@
-import { BaseToken, ColorKeys, ComponentCommonColor, SystemColor, SystemFontSize, SystemPadding, SystemToken } from '@style/style';
+import {
+  BaseToken,
+  ColorKeys,
+  ComponentCommonColor,
+  ComponentToken,
+  SystemColor,
+  SystemFontSize,
+  SystemPadding,
+  SystemToken,
+} from '@style/style';
 
 /** 0. 공통 스타일 지정함수
  * variant 별 스타일 지정
@@ -65,9 +74,9 @@ function CommonFontSize(fontStyle: SystemFontSize) {
 /** 1. Button 스타일
  * */
 
-function ButtonPadding(systemToken: SystemPadding) {
+function ButtonPadding(systemTokenPadding: SystemPadding) {
   return {
-    ...systemToken,
+    ...systemTokenPadding,
   };
 }
 
@@ -88,7 +97,15 @@ function ChipPadding(baseToken: BaseToken) {
   };
 }
 
-export function componentToken(systemToken: SystemToken, baseToken: BaseToken) {
+/** 3. InputField 에 대한 ComponentPadding
+ */
+function InputFieldPadding(systemTokenPadding: SystemPadding) {
+  return {
+    ...systemTokenPadding,
+  };
+}
+
+export function componentToken(systemToken: SystemToken, baseToken: BaseToken): ComponentToken {
   return {
     button: {
       color: CommonColor(systemToken.color),
@@ -105,6 +122,15 @@ export function componentToken(systemToken: SystemToken, baseToken: BaseToken) {
     icon: {
       color: CommonColor(systemToken.color),
       size: systemToken.fontSize.icon,
+    },
+    inputField: {
+      color: CommonColor(systemToken.color),
+      padding: InputFieldPadding(systemToken.padding),
+      fontSize: CommonFontSize(systemToken.fontSize),
+      fontWeight: {
+        label: baseToken.fontWeight.regular,
+        text: baseToken.fontWeight.light,
+      },
     },
   };
 }

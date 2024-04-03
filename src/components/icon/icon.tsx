@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ColorKeys, SizeKeys, VariantKeys } from '@style/style';
+import { ColorKeys, SizeKeys } from '@style/style';
 
 import ChipCloseIconSvg from '../../assets/icon/chipCloseButton.svg?react';
 

@@ -29,6 +29,7 @@ interface ComponentToken {
   button: ComponentButton;
   chip: ComponentChip;
   icon: ComponentIcon;
+  inputField: ComponentInputField;
 }
 // 0. Component 토큰에서 공통적으로 사용하는 타입 지정
 type ComponentCommonColor = {
@@ -76,31 +77,19 @@ interface ComponentIcon {
 type ComponentIconSize = CommonSize & {};
 
 // 4. Component 토큰에서 inputField 타입
+interface ComponentInputField {
+  color: ComponentCommonColor;
+  padding: ComponentInputFieldPadding;
+  fontSize: ComponentInputFieldFontSize;
+  fontWeight: ComponentInputFieldFontWeight;
+}
 
-type InputSize = SizeKeys;
-interface InputProps {
-  size: InputSize;
-  color?: ColorKeys;
-  value: string;
-  placeholder?: string;
-  errorMessage?: string;
-  isRequired?: boolean;
-  isDisabled?: boolean;
-  isReadOnly?: boolean;
-}
-interface InputActions {
-  onChange?: (value: string) => void;
-  onBlur?: () => void;
-}
-interface InputStyles {
-  focusColor?: InputColors;
-  size?: InputSize;
-  icon?: React.JSX.Element;
-  isIcon?: boolean;
-  label?: string;
-  isError?: boolean;
-}
-interface InputFieldProps extends InputProps, InputActions {}
+type ComponentInputFieldPadding = SystemPadding & {};
+type ComponentInputFieldFontSize = SystemFontSize & {};
+type ComponentInputFieldFontWeight = {
+  label: number;
+  text: number;
+};
 
 interface HeaderSize {
   h1: string;
