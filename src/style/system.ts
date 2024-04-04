@@ -195,7 +195,7 @@ export const darkTheme: SystemThemeColors = {
 
 // 변경시 컴포넌트 기본 테마 색상을 재지정
 // systemThemeColor : 시스템 전체 테마 색상.
-export function systemDarkColor(color: ColorKeys = 'green'): SystemColor {
+export function systemDarkColor(color: ColorKeys): SystemColor {
   return {
     ...darkTheme,
     systemThemeColor: {
@@ -206,7 +206,7 @@ export function systemDarkColor(color: ColorKeys = 'green'): SystemColor {
 
 // 변경시 컴포넌트 기본 테마 색상을 재지정
 // systemThemeColor : 시스템 전체 테마 색상.
-export function systemLightColor(color: ColorKeys = 'green'): SystemColor {
+export function systemLightColor(color: ColorKeys): SystemColor {
   return {
     ...lightTheme,
     systemThemeColor: {
@@ -215,8 +215,8 @@ export function systemLightColor(color: ColorKeys = 'green'): SystemColor {
   };
 }
 
-export function systemToken(theme: 'dark' | 'light', size: SizeKeys, headerSize: HeaderSizeKeys): SystemToken {
-  const systemColor = theme === 'light' ? systemLightColor() : systemDarkColor();
+export function systemToken(theme: 'dark' | 'light', colorTheme: ColorKeys, size: SizeKeys, headerSize: HeaderSizeKeys): SystemToken {
+  const systemColor = theme === 'light' ? systemLightColor(colorTheme) : systemDarkColor(colorTheme);
   const systemPaddings = systemPadding(size);
   const systemFontSize = {
     header: systemHeaderSize(headerSize),

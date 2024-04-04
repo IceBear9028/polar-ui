@@ -2,6 +2,7 @@ import {
   BaseToken,
   ColorKeys,
   ComponentCommonColor,
+  ComponentInputFieldColor,
   ComponentToken,
   SystemColor,
   SystemFontSize,
@@ -105,6 +106,63 @@ function InputFieldPadding(systemTokenPadding: SystemPadding) {
   };
 }
 
+function InputFieldColor(systemColor: SystemColor): ComponentInputFieldColor {
+  function filledContrastColor(color: ColorKeys) {
+    return {
+      color: systemColor.common.outlinedVariant,
+      border: systemColor.common.outlinedVariant,
+      focusBorder: systemColor[color].primary,
+      errorBorder: systemColor.common.error,
+      background: systemColor.common.elementLow,
+    };
+  }
+  function filledColor(color: ColorKeys) {
+    return {
+      color: systemColor.common.outlinedVariant,
+      border: systemColor.common.outlinedVariant,
+      focusBorder: systemColor[color].primary,
+      errorBorder: systemColor.common.error,
+      background: systemColor.common.elementLow,
+    };
+  }
+  function outlinedColor(color: ColorKeys) {
+    return {
+      color: systemColor.common.outlinedVariant,
+      border: systemColor.common.outlinedVariant,
+      focusBorder: systemColor[color].primary,
+      errorBorder: systemColor.common.error,
+      background: systemColor.common.elementLow,
+    };
+  }
+  return {
+    systemThemeColor: {
+      filledContrast: filledContrastColor('systemThemeColor'),
+      filled: filledColor('systemThemeColor'),
+      outlined: outlinedColor('systemThemeColor'),
+    },
+    green: {
+      filledContrast: filledContrastColor('green'),
+      filled: filledColor('green'),
+      outlined: outlinedColor('green'),
+    },
+    red: {
+      filledContrast: filledContrastColor('red'),
+      filled: filledColor('red'),
+      outlined: outlinedColor('red'),
+    },
+    blue: {
+      filledContrast: filledContrastColor('blue'),
+      filled: filledColor('blue'),
+      outlined: outlinedColor('blue'),
+    },
+    gray: {
+      outlined: outlinedColor('gray'),
+      filledContrast: filledContrastColor('gray'),
+      filled: filledColor('gray'),
+    },
+  };
+}
+
 export function componentToken(systemToken: SystemToken, baseToken: BaseToken): ComponentToken {
   return {
     button: {
@@ -124,7 +182,7 @@ export function componentToken(systemToken: SystemToken, baseToken: BaseToken): 
       size: systemToken.fontSize.icon,
     },
     inputField: {
-      color: CommonColor(systemToken.color),
+      color: InputFieldColor(systemToken.color),
       padding: InputFieldPadding(systemToken.padding),
       fontSize: CommonFontSize(systemToken.fontSize),
       fontWeight: {

@@ -31,7 +31,9 @@ interface ComponentToken {
   icon: ComponentIcon;
   inputField: ComponentInputField;
 }
-// 0. Component 토큰에서 공통적으로 사용하는 타입 지정
+
+/** 0. Component 토큰에서 공통적으로 사용하는 타입 지정
+ */
 type ComponentCommonColor = {
   [Color in ColorKeys]: {
     [Variant in keyof Variants]: {
@@ -42,7 +44,8 @@ type ComponentCommonColor = {
   };
 };
 
-// 1. Component 토큰에서 Button 타입
+/** 1. Component 토큰에서 Button 타입
+ */
 interface ComponentButton {
   color: ComponentCommonColor;
   padding: ComponentButtonPadding;
@@ -53,7 +56,8 @@ type ComponentButtonPadding = SystemPadding & {};
 type ComponentButtonFontSize = SystemFontSize & {};
 type ComponentButtonFontWeight = number;
 
-// 2. Component 토큰에서 Chip 타입
+/** 2. Component 토큰에서 Chip 타입
+ */
 interface ComponentChip {
   color: ComponentCommonColor;
   padding: ComponentChipPadding;
@@ -68,7 +72,8 @@ type ComponentChipPadding = {
 type ComponentChipFontSize = SystemFontSize & {};
 type ComponentChipFontWeight = number;
 
-// 3. Component 토큰에서 Icon 타입
+/** 3. Component 토큰에서 Icon 타입
+ */
 interface ComponentIcon {
   color: ComponentCommonColor;
   size: ComponentIconSize;
@@ -76,9 +81,21 @@ interface ComponentIcon {
 
 type ComponentIconSize = CommonSize & {};
 
-// 4. Component 토큰에서 inputField 타입
+/** 4. Component 토큰에서 inputField 타입
+ */
+type ComponentInputFieldColor = {
+  [Color in ColorKeys]: {
+    [Variant in keyof Variants]: {
+      color: string;
+      border: string;
+      focusBorder: string;
+      errorBorder: string;
+      background: string;
+    };
+  };
+};
 interface ComponentInputField {
-  color: ComponentCommonColor;
+  color: ComponentInputFieldColor;
   padding: ComponentInputFieldPadding;
   fontSize: ComponentInputFieldFontSize;
   fontWeight: ComponentInputFieldFontWeight;
