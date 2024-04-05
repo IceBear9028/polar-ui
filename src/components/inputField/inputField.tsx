@@ -19,7 +19,7 @@ interface InputActions {
   onChange?: (value: string) => void;
   onBlur?: () => void;
 }
-interface InputFieldProps extends InputProps, InputActions {}
+export interface InputFieldProps extends InputProps, InputActions {}
 
 const InputField: FC<InputFieldProps> = ({
   size = 'md',
