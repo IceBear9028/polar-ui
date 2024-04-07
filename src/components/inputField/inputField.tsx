@@ -7,6 +7,7 @@ interface InputProps {
   size: InputSize;
   color?: ColorKeys;
   variants?: VariantKeys;
+  label?: string;
   value: string;
   placeholder?: string;
   errorMessage?: string;
@@ -26,6 +27,7 @@ const InputField: FC<InputFieldProps> = ({
   variants = 'outlined',
   color,
   value,
+  label,
   placeholder,
   onChange,
   onBlur,
@@ -38,8 +40,10 @@ const InputField: FC<InputFieldProps> = ({
     <StyledInputArea size={size}>
       {/* 1. 라벨에 대한 영역 */}
       <StyledInputLabelArea>
-        <StyledInputLabel size={size}></StyledInputLabel>
-        {isRequired && <StyledInputRequiredLabel size={size} />}
+        <StyledInputLabel size={size} isDisabled={isDisabled}>
+          {label}
+        </StyledInputLabel>
+        {isRequired && <StyledInputRequiredLabel size={size}>*</StyledInputRequiredLabel>}
       </StyledInputLabelArea>
 
       {/* 2. input 에 대한 영역 */}
@@ -69,6 +73,7 @@ interface InputStyles {
   color?: ColorKeys;
   variants: VariantKeys;
   size: InputSize;
+  placeholder?: string;
   label?: string;
   isError?: boolean;
   isDisabled?: boolean;
@@ -89,15 +94,12 @@ const StyledInputArea = styled.div<Pick<InputStyles, 'size'>>`
  * A. 라벨
  * - required, disabled 에 대한 스타일 지정
  */
-interface StyledInputLabelProps {
-  size: SizeKeys;
-  disabled?: boolean;
-}
+interface StyledInputLabelProps extends Pick<InputStyles, 'size' | 'isDisabled'> {}
 
 const StyledInputLabelArea = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-direction: row;
+  gap: 4px;
 `;
 
 const StyledInputLabel = styled.span<StyledInputLabelProps>`
@@ -107,8 +109,8 @@ const StyledInputLabel = styled.span<StyledInputLabelProps>`
     }
     return theme.component.inputField.fontSize.text.md;
   }};
-  color: ${({ theme, disabled }) => {
-    return disabled ? theme.system.color.common.disabled : theme.system.color.common.text;
+  color: ${({ theme, isDisabled }) => {
+    return isDisabled ? theme.system.color.common.disabled : theme.system.color.common.text;
   }};
   font-weight: ${({ theme }) => theme.component.inputField.fontWeight.label};
 `;
@@ -144,7 +146,7 @@ const StyledInput = styled.input<InputStyles>`
   }};
   color: ${({ theme, color, variants }) => {
     const colorToken = color ? theme.component.inputField.color[color] : theme.component.inputField.color.systemThemeColor;
-    return colorToken[variants].color;
+    return colorToken[variants].text;
   }};
 
   // 폰트 사이즈
@@ -152,11 +154,20 @@ const StyledInput = styled.input<InputStyles>`
   font-weight: ${({ theme }) => theme.component.inputField.fontWeight.text};
 
   border: 1px solid
-    ${({ theme, color, variants }) => {
-      const colorToken = color ? theme.component.inputField.color[color] : theme.component.inputField.color.systemThemeColor;
-      return colorToken[variants].border;
+    ${({ theme, isError, variants, color }) => {
+      const { errorBorder, border } = color
+        ? theme.component.inputField.color[color][variants]
+        : theme.component.inputField.color.systemThemeColor[variants];
+      return isError ? errorBorder : border;
     }};
-  box-shadow: 0 0 0 1px ${({ theme, isError }) => (isError ? theme.error : 'rgb(0,0,0,0)')} inset;
+  box-shadow: 0 0 0 1px
+    ${({ theme, isError, variants, color }) => {
+      const { errorBorder } = color
+        ? theme.component.inputField.color[color][variants]
+        : theme.component.inputField.color.systemThemeColor[variants];
+      return isError ? errorBorder : 'rgb(0,0,0,0)';
+    }}
+    inset;
 
   border-radius: 5px;
   transition: all 100ms linear;
@@ -183,6 +194,9 @@ const StyledInput = styled.input<InputStyles>`
     cursor: not-allowed;
   }
   &::placeholder {
-    color: ${({ theme }) => theme.outlinedVariant};
+    color: ${({ theme, color, variants }) => {
+      const colorToken = color ? theme.component.inputField.color[color] : theme.component.inputField.color.systemThemeColor;
+      return colorToken[variants].placeholder;
+    }};
   }
 `;

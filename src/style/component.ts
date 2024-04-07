@@ -109,7 +109,8 @@ function InputFieldPadding(systemTokenPadding: SystemPadding) {
 function InputFieldColor(systemColor: SystemColor): ComponentInputFieldColor {
   function filledContrastColor(color: ColorKeys) {
     return {
-      color: systemColor.common.outlinedVariant,
+      text: systemColor.common.text,
+      placeholder: systemColor.common.outlinedVariant,
       border: systemColor.common.outlinedVariant,
       focusBorder: systemColor[color].primary,
       errorBorder: systemColor.common.error,
@@ -118,7 +119,8 @@ function InputFieldColor(systemColor: SystemColor): ComponentInputFieldColor {
   }
   function filledColor(color: ColorKeys) {
     return {
-      color: systemColor.common.outlinedVariant,
+      text: systemColor.common.text,
+      placeholder: systemColor.common.outlinedVariant,
       border: systemColor.common.outlinedVariant,
       focusBorder: systemColor[color].primary,
       errorBorder: systemColor.common.error,
@@ -127,7 +129,8 @@ function InputFieldColor(systemColor: SystemColor): ComponentInputFieldColor {
   }
   function outlinedColor(color: ColorKeys) {
     return {
-      color: systemColor.common.outlinedVariant,
+      text: systemColor.common.text,
+      placeholder: systemColor.common.outlinedVariant,
       border: systemColor.common.outlinedVariant,
       focusBorder: systemColor[color].primary,
       errorBorder: systemColor.common.error,

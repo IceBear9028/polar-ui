@@ -86,7 +86,8 @@ type ComponentIconSize = CommonSize & {};
 type ComponentInputFieldColor = {
   [Color in ColorKeys]: {
     [Variant in keyof Variants]: {
-      color: string;
+      text: string;
+      placeholder: string;
       border: string;
       focusBorder: string;
       errorBorder: string;

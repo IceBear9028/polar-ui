@@ -7,18 +7,23 @@ const InputFieldExample: FC<InputFieldProps> = ({
   color,
   variants,
   size,
+  label,
+  placeholder,
   isRequired,
   isReadOnly,
   isError,
   isDisabled,
   value,
   errorMessage,
+  onChange,
 }) => {
   return (
     <Background>
       <InputField
         size={size}
         value={value}
+        label={label}
+        placeholder={placeholder}
         variants={variants}
         color={color}
         isError={isError}
@@ -26,6 +31,7 @@ const InputFieldExample: FC<InputFieldProps> = ({
         isReadOnly={isReadOnly}
         isRequired={isRequired}
         errorMessage={errorMessage}
+        onChange={onChange}
       />
     </Background>
   );
