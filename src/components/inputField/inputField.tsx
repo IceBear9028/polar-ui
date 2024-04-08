@@ -29,6 +29,7 @@ const InputField: FC<InputFieldProps> = ({
   value,
   label,
   placeholder,
+  errorMessage,
   onChange,
   onBlur,
   isRequired,
@@ -42,8 +43,9 @@ const InputField: FC<InputFieldProps> = ({
       <StyledInputLabelArea>
         <StyledInputLabel size={size} isDisabled={isDisabled}>
           {label}
+          {isRequired && <StyledInputRequiredLabel size={size}>*</StyledInputRequiredLabel>}
         </StyledInputLabel>
-        {isRequired && <StyledInputRequiredLabel size={size}>*</StyledInputRequiredLabel>}
+        {isError && <StyledInputErrorLabel>{errorMessage}</StyledInputErrorLabel>}
       </StyledInputLabelArea>
 
       {/* 2. input 에 대한 영역 */}
@@ -99,7 +101,9 @@ interface StyledInputLabelProps extends Pick<InputStyles, 'size' | 'isDisabled'>
 const StyledInputLabelArea = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 4px;
+  justify-content: space-between;
+  align-items: end;
+  width: 100%;
 `;
 
 const StyledInputLabel = styled.span<StyledInputLabelProps>`
@@ -113,19 +117,27 @@ const StyledInputLabel = styled.span<StyledInputLabelProps>`
     return isDisabled ? theme.system.color.common.disabled : theme.system.color.common.text;
   }};
   font-weight: ${({ theme }) => theme.component.inputField.fontWeight.label};
+  align-items: end;
 `;
 
 const StyledInputRequiredLabel = styled.span<Omit<StyledInputLabelProps, 'disabled'>>`
   font-size: ${({ theme, size }) => {
     if (size === 'xs' || size === 'sm') {
-      return theme.component.inputField.fontSize.text.xs;
+      return theme.component.inputField.fontSize.text.md;
     }
-    return theme.component.inputField.fontSize.text.md;
+    return theme.component.inputField.fontSize.text.lg;
   }};
   color: ${({ theme }) => {
     return theme.system.color.common.caution;
   }};
   font-weight: ${({ theme }) => theme.component.inputField.fontWeight.label};
+  margin-left: 3px;
+`;
+
+const StyledInputErrorLabel = styled.span`
+  font-size: ${({ theme }) => theme.system.fontSize.text.xs};
+  font-weight: ${({ theme }) => theme.base.fontWeight.medium};
+  color: ${({ theme }) => theme.system.color.common.error};
 `;
 
 /**
