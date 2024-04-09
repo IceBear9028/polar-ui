@@ -2,7 +2,7 @@ import {
   BaseToken,
   ColorKeys,
   ComponentCommonColor,
-  ComponentInputFieldColor,
+  ComponentInputColor,
   ComponentToken,
   SystemColor,
   SystemFontSize,
@@ -100,13 +100,13 @@ function ChipPadding(baseToken: BaseToken) {
 
 /** 3. InputField 에 대한 ComponentPadding
  */
-function InputFieldPadding(systemTokenPadding: SystemPadding) {
+function InputPadding(systemTokenPadding: SystemPadding) {
   return {
     ...systemTokenPadding,
   };
 }
 
-function InputFieldColor(systemColor: SystemColor): ComponentInputFieldColor {
+function InputColor(systemColor: SystemColor): ComponentInputColor {
   function filledContrastColor(color: ColorKeys) {
     return {
       text: systemColor.common.text,
@@ -185,8 +185,17 @@ export function componentToken(systemToken: SystemToken, baseToken: BaseToken): 
       size: systemToken.fontSize.icon,
     },
     inputField: {
-      color: InputFieldColor(systemToken.color),
-      padding: InputFieldPadding(systemToken.padding),
+      color: InputColor(systemToken.color),
+      padding: InputPadding(systemToken.padding),
+      fontSize: CommonFontSize(systemToken.fontSize),
+      fontWeight: {
+        label: baseToken.fontWeight.regular,
+        text: baseToken.fontWeight.light,
+      },
+    },
+    select: {
+      color: InputColor(systemToken.color),
+      padding: InputPadding(systemToken.padding),
       fontSize: CommonFontSize(systemToken.fontSize),
       fontWeight: {
         label: baseToken.fontWeight.regular,

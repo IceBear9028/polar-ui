@@ -29,7 +29,8 @@ interface ComponentToken {
   button: ComponentButton;
   chip: ComponentChip;
   icon: ComponentIcon;
-  inputField: ComponentInputField;
+  inputField: ComponentInput;
+  select: ComponentInput;
 }
 
 /** 0. Component 토큰에서 공통적으로 사용하는 타입 지정
@@ -83,7 +84,7 @@ type ComponentIconSize = CommonSize & {};
 
 /** 4. Component 토큰에서 inputField 타입
  */
-type ComponentInputFieldColor = {
+type ComponentInputColor = {
   [Color in ColorKeys]: {
     [Variant in keyof Variants]: {
       text: string;
@@ -95,16 +96,16 @@ type ComponentInputFieldColor = {
     };
   };
 };
-interface ComponentInputField {
-  color: ComponentInputFieldColor;
-  padding: ComponentInputFieldPadding;
-  fontSize: ComponentInputFieldFontSize;
-  fontWeight: ComponentInputFieldFontWeight;
+interface ComponentInput {
+  color: ComponentInputColor;
+  padding: ComponentInputPadding;
+  fontSize: ComponentInputFontSize;
+  fontWeight: ComponentInputFontWeight;
 }
 
-type ComponentInputFieldPadding = SystemPadding & {};
-type ComponentInputFieldFontSize = SystemFontSize & {};
-type ComponentInputFieldFontWeight = {
+type ComponentInputPadding = SystemPadding & {};
+type ComponentInputFontSize = SystemFontSize & {};
+type ComponentInputFontWeight = {
   label: number;
   text: number;
 };
