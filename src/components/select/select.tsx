@@ -6,7 +6,7 @@ type SelectSize = SizeKeys;
 
 interface SelectSettingProps {
   size: SelectSize;
-  color: ColorKeys;
+  color?: ColorKeys;
   variants: VariantKeys;
   label: string;
   value: string;
@@ -36,6 +36,7 @@ const Select: FC<SelectProps> = ({ size = 'md', variants = 'outlined', ...props 
           </StyledLabel>
         )}
       </StyledLabelContainer>
+      <StyledSelectField size={size} variants={variants}></StyledSelectField>
     </StyledSelectContainer>
   );
 };
@@ -84,4 +85,77 @@ const StyledRequiredLabel = styled.span<Pick<SelectStyles, 'size' | 'variants'>>
   color: ${({ theme }) => theme.system.color.common.caution};
   font-weight: ${({ theme }) => theme.component.inputField.fontWeight.label};
   margin-left: 3px;
+`;
+
+const StyledSelectField = styled.select<SelectStyles>`
+  width: 100%;
+  padding: ${({ theme, size }) => {
+    const { horizon, vertical } = theme.component.select.padding.input[size];
+    return `${vertical} ${horizon}`;
+  }};
+
+  // 폰트 사이즈
+  font-size: ${({ theme, size }) => {
+    return size ? theme.component.select.fontSize.text.default : theme.component.select.fontSize.text[size];
+  }};
+
+  // border 설정
+  border: 1px solid
+    ${({ theme, isError, variants, color }) => {
+      const { errorBorder, border } = color
+        ? theme.component.inputField.color[color][variants]
+        : theme.component.inputField.color.systemThemeColor[variants];
+      return isError ? errorBorder : border;
+    }};
+  box-shadow: 0 0 0 1px
+    ${({ theme, isError, variants, color }) => {
+      const { errorBorder } = color
+        ? theme.component.inputField.color[color][variants]
+        : theme.component.inputField.color.systemThemeColor[variants];
+      return isError ? errorBorder : 'rgb(0,0,0,0)';
+    }}
+    inset;
+
+  background-color: ${({ theme, variants, color }) => {
+    const colorToken = color ? theme.component.select.color[color] : theme.component.select.color.systemThemeColor;
+    return colorToken[variants].background;
+  }};
+
+  color: ${({ theme, color, variants }) => {
+    const colorToken = color ? theme.component.select.color[color] : theme.component.select.color.systemThemeColor;
+    return colorToken[variants].text;
+  }};
+
+  border-radius: 5px;
+  transition: all 100ms linear;
+
+  appearance: none;
+
+  &:focus-visible {
+    border: 1px solid
+      ${({ theme, isError, color }) => {
+        const colorToken = color ? theme.component.select.color[color] : theme.component.select.color.systemThemeColor;
+        return isError ? colorToken.outlined.errorBorder : colorToken.outlined.focusBorder;
+      }};
+    box-shadow: 0 0 0 1px
+      ${({ theme, isError, color }) => {
+        const colorToken = color ? theme.component.select.color[color] : theme.component.select.color.systemThemeColor;
+        return isError ? colorToken.outlined.errorBorder : colorToken.outlined.focusBorder;
+      }}
+      inset;
+  }
+  &:read-only {
+    opacity: 0.5;
+    cursor: default;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  &::placeholder {
+    color: ${({ theme, color, variants }) => {
+      const colorToken = color ? theme.component.select.color[color] : theme.component.select.color.systemThemeColor;
+      return colorToken[variants].placeholder;
+    }};
+  }
 `;
