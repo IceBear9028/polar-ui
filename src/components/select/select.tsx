@@ -16,6 +16,12 @@ interface SelectSettingProps {
   isDisabled?: boolean;
   isReadOnly?: boolean;
   isError?: boolean;
+  option: Option[];
+}
+
+interface Option {
+  name: string;
+  value: string | number;
 }
 
 interface SelectActions {
@@ -25,7 +31,7 @@ interface SelectActions {
 
 export interface SelectProps extends SelectSettingProps, SelectActions {}
 
-const Select: FC<SelectProps> = ({ size = 'md', variants = 'outlined', ...props }) => {
+const Select: FC<SelectProps> = ({ size = 'md', variants = 'outlined', option, ...props }) => {
   return (
     <StyledSelectContainer>
       <StyledLabelContainer>
@@ -36,7 +42,14 @@ const Select: FC<SelectProps> = ({ size = 'md', variants = 'outlined', ...props 
           </StyledLabel>
         )}
       </StyledLabelContainer>
-      <StyledSelectField size={size} variants={variants}></StyledSelectField>
+      <StyledSelectField size={size} variants={variants}>
+        {option &&
+          option.map((item, index) => (
+            <option key={`${index}-${item.name}`} value={item.value}>
+              {item.name}
+            </option>
+          ))}
+      </StyledSelectField>
     </StyledSelectContainer>
   );
 };
