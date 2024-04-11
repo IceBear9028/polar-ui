@@ -14,7 +14,6 @@ interface SelectSettingProps {
   errorMessage?: string;
   isRequired?: boolean;
   isDisabled?: boolean;
-  isReadOnly?: boolean;
   isError?: boolean;
   option: Option[];
 }
@@ -38,11 +37,23 @@ const Select: FC<SelectProps> = ({ size = 'md', variants = 'outlined', option, .
         {props.label && (
           <StyledLabel size={size} variants={variants}>
             {props.label}
-            {props.isRequired && <StyledRequiredLabel size={size} variants={variants} />}
+            {props.isRequired && (
+              <StyledRequiredLabel size={size} variants={variants}>
+                *
+              </StyledRequiredLabel>
+            )}
           </StyledLabel>
         )}
+        {props.isError && <StyledInputErrorLabel>{props.errorMessage}</StyledInputErrorLabel>}
       </StyledLabelContainer>
-      <StyledSelectField size={size} variants={variants}>
+      <StyledSelectField
+        size={size}
+        variants={variants}
+        placeholder={props.placeholder}
+        isDisabled={props.isDisabled}
+        isError={props.isError}
+        isRequired={props.isRequired}
+      >
         {option &&
           option.map((item, index) => (
             <option key={`${index}-${item.name}`} value={item.value}>
@@ -57,7 +68,7 @@ const Select: FC<SelectProps> = ({ size = 'md', variants = 'outlined', option, .
 export default Select;
 
 interface SelectStyles
-  extends Pick<SelectSettingProps, 'size' | 'color' | 'variants' | 'isRequired' | 'isReadOnly' | 'isDisabled' | 'isError'> {}
+  extends Pick<SelectSettingProps, 'size' | 'color' | 'variants' | 'placeholder' | 'isRequired' | 'isDisabled' | 'isError'> {}
 
 const StyledSelectContainer = styled.div`
   display: flex;
@@ -100,6 +111,12 @@ const StyledRequiredLabel = styled.span<Pick<SelectStyles, 'size' | 'variants'>>
   margin-left: 3px;
 `;
 
+const StyledInputErrorLabel = styled.span`
+  font-size: ${({ theme }) => theme.system.fontSize.text.xs};
+  font-weight: ${({ theme }) => theme.base.fontWeight.medium};
+  color: ${({ theme }) => theme.system.color.common.error};
+`;
+
 const StyledSelectField = styled.select<SelectStyles>`
   width: 100%;
   padding: ${({ theme, size }) => {
@@ -116,15 +133,15 @@ const StyledSelectField = styled.select<SelectStyles>`
   border: 1px solid
     ${({ theme, isError, variants, color }) => {
       const { errorBorder, border } = color
-        ? theme.component.inputField.color[color][variants]
-        : theme.component.inputField.color.systemThemeColor[variants];
+        ? theme.component.select.color[color][variants]
+        : theme.component.select.color.systemThemeColor[variants];
       return isError ? errorBorder : border;
     }};
   box-shadow: 0 0 0 1px
     ${({ theme, isError, variants, color }) => {
       const { errorBorder } = color
-        ? theme.component.inputField.color[color][variants]
-        : theme.component.inputField.color.systemThemeColor[variants];
+        ? theme.component.select.color[color][variants]
+        : theme.component.select.color.systemThemeColor[variants];
       return isError ? errorBorder : 'rgb(0,0,0,0)';
     }}
     inset;
@@ -141,7 +158,6 @@ const StyledSelectField = styled.select<SelectStyles>`
 
   border-radius: 5px;
   transition: all 100ms linear;
-
   appearance: none;
 
   &:focus-visible {
@@ -156,10 +172,6 @@ const StyledSelectField = styled.select<SelectStyles>`
         return isError ? colorToken.outlined.errorBorder : colorToken.outlined.focusBorder;
       }}
       inset;
-  }
-  &:read-only {
-    opacity: 0.5;
-    cursor: default;
   }
   &:disabled {
     opacity: 0.5;

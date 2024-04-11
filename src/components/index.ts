@@ -8,3 +8,7 @@
 export * from './button';
 
 export * from './chip';
+
+export * from './inputField';
+
+export * from './select';
