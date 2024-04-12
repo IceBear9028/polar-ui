@@ -1,6 +1,7 @@
 import { ColorKeys, SizeKeys, VariantKeys } from '@style/style';
 import { FC } from 'react';
 import styled from 'styled-components';
+import { SelectArrowIcon } from '../icon/icon.tsx';
 
 type SelectSize = SizeKeys;
 
@@ -46,21 +47,27 @@ const Select: FC<SelectProps> = ({ size = 'md', variants = 'outlined', option, .
         )}
         {props.isError && <StyledInputErrorLabel>{props.errorMessage}</StyledInputErrorLabel>}
       </StyledLabelContainer>
-      <StyledSelectField
-        size={size}
-        variants={variants}
-        placeholder={props.placeholder}
-        isDisabled={props.isDisabled}
-        isError={props.isError}
-        isRequired={props.isRequired}
-      >
-        {option &&
-          option.map((item, index) => (
-            <option key={`${index}-${item.name}`} value={item.value}>
-              {item.name}
-            </option>
-          ))}
-      </StyledSelectField>
+      <StyledSelectFieldContainer>
+        <StyledSelectField
+          size={size}
+          variants={variants}
+          color={props.color}
+          placeholder={props.placeholder}
+          isDisabled={props.isDisabled}
+          isError={props.isError}
+          isRequired={props.isRequired}
+        >
+          {option &&
+            option.map((item, index) => (
+              <option key={`${index}-${item.name}`} value={item.value}>
+                {item.name}
+              </option>
+            ))}
+        </StyledSelectField>
+        <StyledIconContainer>
+          <SelectArrowIcon size={size} />
+        </StyledIconContainer>
+      </StyledSelectFieldContainer>
     </StyledSelectContainer>
   );
 };
@@ -117,6 +124,21 @@ const StyledInputErrorLabel = styled.span`
   color: ${({ theme }) => theme.system.color.common.error};
 `;
 
+const StyledSelectFieldContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const StyledIconContainer = styled.span`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 14px; /* 오른쪽에서 10px 떨어진 위치 */
+  top: 50%; /* 중앙 정렬 */
+  transform: translateY(-50%); /* Y축 기준 중앙 정렬 */
+  pointer-events: none; /* SVG 아이콘 클릭 방지 */
+`;
+
 const StyledSelectField = styled.select<SelectStyles>`
   width: 100%;
   padding: ${({ theme, size }) => {
@@ -158,6 +180,8 @@ const StyledSelectField = styled.select<SelectStyles>`
 
   border-radius: 5px;
   transition: all 100ms linear;
+
+  // 브라우저가 자동으로 적용하는 외형 제거
   appearance: none;
 
   &:focus-visible {

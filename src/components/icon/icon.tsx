@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { ColorKeys, SizeKeys } from '@style/style';
 
 import ChipCloseIconSvg from '../../assets/icon/chipCloseButton.svg?react';
+import SelectArrowIconSvg from '../../assets/icon/selectDownArrowIcon.svg?react';
 
 interface IconProps {
   size?: SizeKeys;
@@ -30,3 +31,4 @@ const StyledIcon = styled.svg<IconProps>`
 `;
 
 export const ChipCloseIcon = styled(StyledIcon).attrs({ as: ChipCloseIconSvg })``;
+export const SelectArrowIcon = styled(StyledIcon).attrs({ as: SelectArrowIconSvg })``;
