@@ -215,8 +215,10 @@ interface SystemDetailColorTheme {
 interface DetailCommonColor {
   // 배경 관련 색상
   background: string;
-  surface: string;
-  surfaceVariant: string;
+  surfaceLowest: string;
+  surfaceLow: string;
+  surfaceHigh: string;
+  surfaceHighest: string;
   element: string;
   elementHigh: string;
   elementHighest: string;
@@ -231,10 +233,17 @@ interface DetailCommonColor {
   success: string;
   disabled: string;
 
+  // text 색상
+  text: string;
+  textNegative: string;
+  textLowest: string;
+  textLow: string;
+  textHigh: string;
+  textHighest: string;
+
   // 기타 요소
   outlined: string;
   outlinedVariant: string;
-  text: string;
 }
 
 interface BaseToken {

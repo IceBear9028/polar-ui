@@ -56,15 +56,24 @@ export function systemIconSize(size: SizeKeys) {
 export const lightTheme: SystemThemeColors = {
   common: {
     background: baseToken.palette.backgroundLight,
-    surface: baseToken.palette.white,
-    surfaceVariant: baseToken.palette.gray200Soft,
+    surfaceLowest: baseToken.palette.white,
+    surfaceLow: baseToken.palette.gray200Soft,
+    surfaceHigh: baseToken.palette.gray600Soft,
+    surfaceHighest: baseToken.palette.gray600Bright,
     outlined: baseToken.palette.gray300Soft,
     outlinedVariant: baseToken.palette.gray300Bright,
     elementLow: baseToken.palette.gray25Bright,
     element: baseToken.palette.gray50Bright,
     elementHigh: baseToken.palette.gray150Bright,
     elementHighest: baseToken.palette.gray200Bright,
+
     text: baseToken.palette.black,
+    textNegative: baseToken.palette.white,
+    textLowest: baseToken.palette.gray150Bright,
+    textLow: baseToken.palette.gray300Bright,
+    textHigh: baseToken.palette.gray400Bright,
+    textHighest: baseToken.palette.gray500Bright,
+
     error: baseToken.palette.redA200Bright,
     onError: baseToken.palette.white,
     caution: baseToken.palette.orangeA100Bright,
@@ -126,15 +135,26 @@ export const lightTheme: SystemThemeColors = {
 export const darkTheme: SystemThemeColors = {
   common: {
     background: baseToken.palette.backgroundDark,
-    surface: baseToken.palette.gray600Bright,
-    surfaceVariant: baseToken.palette.gray600Soft,
+    surfaceLowest: baseToken.palette.gray600Bright,
+    surfaceLow: baseToken.palette.gray600Soft,
+    surfaceHigh: baseToken.palette.gray200Soft,
+    surfaceHighest: baseToken.palette.white,
+
     outlined: baseToken.palette.gray500Soft,
     outlinedVariant: baseToken.palette.gray300Soft,
+
     elementLow: baseToken.palette.gray600Bright,
     element: baseToken.palette.gray500Bright,
     elementHigh: baseToken.palette.gray400Bright,
     elementHighest: baseToken.palette.gray300Bright,
+
     text: baseToken.palette.white,
+    textNegative: baseToken.palette.black,
+    textLowest: baseToken.palette.gray500Bright,
+    textLow: baseToken.palette.gray400Bright,
+    textHigh: baseToken.palette.gray300Bright,
+    textHighest: baseToken.palette.gray150Bright,
+
     error: baseToken.palette.redA200Soft,
     onError: baseToken.palette.white,
     caution: baseToken.palette.orangeA100Soft,
