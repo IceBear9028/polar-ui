@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { ButtonColorKeys, ButtonSize, ButtonVariants, ColorKeys } from '@style/style';
 
@@ -15,13 +15,18 @@ interface StyledButtonProps extends Omit<ButtonProps, 'onClick' | 'variants'> {
   variants: ButtonVariants;
 }
 
-const Button: FC<ButtonProps> = ({ variants = 'filledContrast', ...props }) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ variants = 'filledContrast', ...props }, ref) => {
   return (
-    <StyledButton variants={variants} {...props}>
+    <StyledButton ref={ref} variants={variants} {...props}>
       {props.text}
     </StyledButton>
   );
-};
+});
+
+/** ESLint 에러를 피하기 위한 옵션 추가
+ * ESLint: Component definition is missing display name(react/display-name)
+ */
+Button.displayName = 'Button';
 
 /** styled-component 의 ThemeProvide 를 이용한 테마 변경 사안 적용중
  */

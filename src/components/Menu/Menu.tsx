@@ -8,12 +8,12 @@ import { FC, ReactNode, RefObject, useEffect, useRef, useState } from 'react';
  * -- 예시는 MenuOrganism.tsx 파일에서 확인 --
  */
 
-interface MenuItemProps {
+export interface MenuItemProps {
   onClick: () => void;
   menuName: string;
 }
 
-interface MenuProps {
+export interface MenuProps {
   isOpen: boolean;
   menuButton: ReactNode;
   children: ReactNode;
@@ -79,12 +79,12 @@ const StyledMenuContainer = styled.div`
 
 const StyledMenuGroup = styled.div`
   position: absolute;
-  top: 0%;
+  top: 0;
   left: calc(100% + 12px);
   flex-direction: column;
   padding: 6px 0;
   border-radius: 4px;
-  background: ${({ theme }) => theme.surfaceHighest};
+  background: ${({ theme }) => theme.system.color.common.surfaceHighest};
 `;
 
 const StyledMenuItem = styled.li`

@@ -162,10 +162,11 @@ const PolarGlobalStyle = createGlobalStyle`
     -webkit-text-fill-color: #000 !important;
   }
 
-  html::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
+  /* overflow : scroll 발생 시 스크롤 바 영역 지정되는 문제 때문에 잠시 주석  */
+  //html::-webkit-scrollbar {
+  //  width: 6px;
+  //  height: 6px;
+  //}
   html::-webkit-scrollbar-thumb {
     background-color: #4e4e4e;
     border-radius: 100px;
