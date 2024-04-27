@@ -132,6 +132,7 @@ const StyledTabContainer = styled.div<Pick<TabProps, 'width' | 'height'>>`
 const StyledTabButtonGroups = styled.div<Pick<TabProps, 'isTabPadding'>>`
   display: flex;
   flex-direction: row;
+  align-self: stretch;
   gap: 20px;
   border-bottom: 1px solid ${({ theme }) => theme.base.palette.gray300Soft};
   padding: ${({ isTabPadding }) => (isTabPadding ? `0 20px` : 'none')};
@@ -139,8 +140,9 @@ const StyledTabButtonGroups = styled.div<Pick<TabProps, 'isTabPadding'>>`
 
 const StyledTabPageContainer = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
+  flex: 1 0 0;
+  align-self: stretch;
+  overflow: auto;
 `;
 
 const StyledTabButton = styled.div<Pick<TabButtonProps, 'focus'>>`
@@ -149,20 +151,26 @@ const StyledTabButton = styled.div<Pick<TabButtonProps, 'focus'>>`
   align-items: center;
   height: 64px;
   padding: 20px 0;
+  text-align: center;
   border-radius: 4px 4px 0 0;
   border-bottom: ${({ theme, focus }) => {
-    const { primaryColor: borderColor } = theme;
+    const { primary: borderColor } = theme.system.color.systemThemeColor;
     return focus ? `3px solid ${borderColor}` : `none`;
   }};
+  cursor: pointer;
 
   /* Text 에 대한 스타일 지정 */
-  color: ${({ theme, focus }) => (focus ? theme.text : theme.textHigh)};
+  color: ${({ theme, focus }) => {
+    const { text, textHigh } = theme.system.color.common;
+    return focus ? text : textHigh;
+  }};
   font-size: ${({ theme }) => theme.system.fontSize.text.lg};
-  font-weight: ${({ theme, focus }) => (focus ? theme.base.fontWeight.sbold : theme.base.fontWeight.regular)};
+  font-weight: ${({ theme, focus }) => {
+    return focus ? theme.base.fontWeight.sbold : theme.base.fontWeight.regular;
+  }};
 
   &:hover {
-    font-weight: ${({ theme }) => theme.base.fontWeight.sbold};
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.system.color.common.text};
   }
 
   /* 클릭 effect 에 대한 스타일 지정 */

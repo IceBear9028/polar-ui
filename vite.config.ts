@@ -1,3 +1,4 @@
+import react from '@vitejs/plugin-react';
 import dts from 'vite-plugin-dts';
 import svgr from 'vite-plugin-svgr';
 import { defineConfig } from 'vite';
@@ -14,7 +15,23 @@ export default defineConfig({
     emptyOutDir: true, // Clears the output directory before building.
   },
   // svgr() : svg 파일불러오기 기능
-  plugins: [dts(), svgr()], // Uses the 'vite-plugin-dts' plugin for generating TypeScript declaration files (d.ts).
+  plugins: [
+    dts(),
+    svgr(),
+    react({
+      babel: {
+        plugins: [
+          [
+            'babel-plugin-styled-components',
+            {
+              displayName: true,
+              fileName: false,
+            },
+          ],
+        ],
+      },
+    }),
+  ], // Uses the 'vite-plugin-dts' plugin for generating TypeScript declaration files (d.ts).
   resolve: {
     alias: [
       { find: '@assets', replacement: './src/assets' },
