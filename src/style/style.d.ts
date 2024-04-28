@@ -173,12 +173,13 @@ interface Padding {
   vertical: string;
 }
 
-type PaddingElement = {
-  [size in keyof CommonSize]: Padding;
-};
-
 interface SystemPadding {
-  input: PaddingElement;
+  input: {
+    xs: Padding;
+    sm: Padding;
+    md: Padding;
+    lg: Padding;
+  };
 }
 
 /** FontSIze 관련 스타일 지정

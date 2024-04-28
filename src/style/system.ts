@@ -25,7 +25,7 @@ const padding: SystemPadding = {
 // 전체 시스템의 default 패딩 값을 지정하는 함수
 export function systemPadding(size: SizeKeys) {
   const componentNames = Object.keys(padding);
-  let paddingObj: SystemPadding = {};
+  let paddingObj = {} as SystemPadding;
   for (let comp of componentNames) {
     paddingObj[comp] = { ...padding[comp], default: padding[comp][size] };
   }

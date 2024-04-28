@@ -9,6 +9,9 @@ import { ThemeProvider } from 'styled-components';
 import PolarGlobalStyle from '../src/style/common/polarGlobalStyle';
 import { designToken } from '../src/style/designToken';
 
+// (styled-component 전용) 내가 설정한 글로벌 스타일, 테마 import
+import { _ToastProvide_ } from '../src/components/toast';
+
 const decorators = [
   withThemeFromJSXProvider({
     themes: {

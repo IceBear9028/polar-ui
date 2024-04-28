@@ -3,6 +3,10 @@ import { ColorKeys, SizeKeys } from '@style/style';
 
 import ChipCloseIconSvg from '../../assets/icon/chipCloseButton.svg?react';
 import SelectArrowIconSvg from '../../assets/icon/selectDownArrowIcon.svg?react';
+import CircleInfoIconSvg from '../../assets/icon/circleInfo.svg?react';
+import CircleCheckIconSvg from '../../assets/icon/circleCheck.svg?react';
+import CircleErrorIconSvg from '../../assets/icon/circleError.svg?react';
+import CloseErrorIconSvg from '../../assets/icon/chipCloseButton.svg?react';
 
 interface IconProps {
   size?: SizeKeys;
@@ -30,5 +34,22 @@ const StyledIcon = styled.svg<IconProps>`
   }};
 `;
 
+const StyledToastIcon = styled.svg``;
+const StyledToastCloseIcon = styled.svg`
+  /* 색상 변경 */
+  & path {
+    fill: ${({ theme }) => {
+      return theme.component.icon.color.gray;
+    }};
+  }
+`;
+
 export const ChipCloseIcon = styled(StyledIcon).attrs({ as: ChipCloseIconSvg })``;
 export const SelectArrowIcon = styled(StyledIcon).attrs({ as: SelectArrowIconSvg })``;
+
+/** Toast 컴포넌트 전용으로 사용하는 아이콘
+ */
+export const CircleInfoIcon = styled(StyledToastIcon).attrs({ as: CircleInfoIconSvg })``;
+export const CircleCheckIcon = styled(StyledToastIcon).attrs({ as: CircleCheckIconSvg })``;
+export const CircleErrorIcon = styled(StyledToastIcon).attrs({ as: CircleErrorIconSvg })``;
+export const CloseErrorIcon = styled(StyledToastCloseIcon).attrs({ as: CloseErrorIconSvg })``;
