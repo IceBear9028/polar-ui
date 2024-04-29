@@ -37,11 +37,11 @@ const StyledButton = styled.button<StyledButtonProps>`
 
   // size 에 관련된 스타일 지정
   font-size: ${({ theme, size }) => {
-    return size ? theme.component.button.fontSize.text[size] : theme.component.button.fontSize.text.default;
+    return size ? theme.component.button.fontSize.text[size] : theme.component.button.fontSize.text.md;
   }};
   font-weight: ${({ theme }) => theme.component.button.fontWeight};
   padding: ${({ theme, size }) => {
-    const resultPadding = size ? theme.component.button.padding.input[size] : theme.component.button.padding.input.default;
+    const resultPadding = size ? theme.component.button.padding.input[size] : theme.component.button.padding.input.md;
     return `${resultPadding.vertical} ${resultPadding.horizon}`;
   }};
 

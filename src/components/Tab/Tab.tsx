@@ -37,8 +37,8 @@ interface TabButtonProps {
 
 /** Tab
  * @param {isTabPadding}, (isTabPadding : boolean) true 시 padding 스타일 수정
- * @param {width} - (width : 'auto' | number) auto 시 가장 바깥 Container 의 길이
- * @param {height} - (height : 'auto' | number) auto 시 가장 바깥 Container 의 길이를 받음
+ * @param {width}, (width : 'auto' | number) auto 시 가장 바깥 Container 의 길이
+ * @param {height}, (height : 'auto' | number) auto 시 가장 바깥 Container 의 길이를 받음
  */
 export const Tab = ({ children, width, height, isTabPadding }: TabProps) => {
   const tabNames = React.Children.map(children, (child) => child.props.name);
