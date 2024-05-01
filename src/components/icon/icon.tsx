@@ -7,6 +7,7 @@ import CircleInfoIconSvg from '../../assets/icon/circleInfo.svg?react';
 import CircleCheckIconSvg from '../../assets/icon/circleCheck.svg?react';
 import CircleErrorIconSvg from '../../assets/icon/circleError.svg?react';
 import CloseErrorIconSvg from '../../assets/icon/chipCloseButton.svg?react';
+import CheckBoxIconSvg from '../../assets/icon/checkBoxIcon.svg?react';
 
 interface IconProps {
   size?: SizeKeys;
@@ -46,6 +47,7 @@ const StyledToastCloseIcon = styled.svg`
 
 export const ChipCloseIcon = styled(StyledIcon).attrs({ as: ChipCloseIconSvg })``;
 export const SelectArrowIcon = styled(StyledIcon).attrs({ as: SelectArrowIconSvg })``;
+export const CheckBoxIcon = styled(StyledIcon).attrs({ as: CheckBoxIconSvg })``;
 
 /** Toast 컴포넌트 전용으로 사용하는 아이콘
  */
