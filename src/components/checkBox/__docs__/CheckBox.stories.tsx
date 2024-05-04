@@ -1,20 +1,20 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { CheckBoxExample } from './CheckBoxExample';
-import { SizeKeys } from '../../../style/style';
+import { ColorKeys, SizeKeys } from '../../../style/style';
 
-const isCheckBoxOption: boolean[] = [true, false];
 const sizeOptions: SizeKeys[] = ['xs', 'sm', 'md', 'lg'];
+const colorOptions: ColorKeys[] = ['red', 'green', 'blue', 'gray'];
 
 const CheckBoxMeta: Meta<typeof CheckBoxExample> = {
   title: 'checkBox',
   component: CheckBoxExample,
   argTypes: {
-    isChecked: {
-      option: isCheckBoxOption,
-      control: { type: 'select' },
-    },
     size: {
       options: sizeOptions,
+      control: { type: 'select' },
+    },
+    color: {
+      options: colorOptions,
       control: { type: 'select' },
     },
   },
@@ -27,7 +27,7 @@ type CheckBoxStory = StoryObj<typeof CheckBoxExample>;
 export const Checked: CheckBoxStory = {
   args: {
     name: 'test',
-    isChecked: true,
+    isChecked: false,
     size: 'md',
   },
 };

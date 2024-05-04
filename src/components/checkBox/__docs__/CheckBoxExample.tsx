@@ -2,10 +2,10 @@ import { FC } from 'react';
 import { CheckBox, CheckBoxProps } from '../checkBox';
 import styled from 'styled-components';
 
-export const CheckBoxExample: FC<CheckBoxProps> = (props) => {
+export const CheckBoxExample: FC<CheckBoxProps> = ({ ...props }) => {
   return (
     <Background>
-      <CheckBox isChecked={props.isChecked} name={props.name} />
+      <CheckBox {...props} />
     </Background>
   );
 };

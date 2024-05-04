@@ -5,10 +5,6 @@ import InputFieldExample from './InputFieldExample';
 const colorOptions: ColorKeys[] = ['red', 'green', 'blue', 'gray'];
 const sizeOptions: SizeKeys[] = ['xs', 'sm', 'md', 'lg'];
 const variantOptions: VariantKeys[] = ['filledContrast', 'filled', 'outlined'];
-const isRequiredOptions: boolean[] = [true, false];
-const isReadOnlyOptions: boolean[] = [true, false];
-const isDisabledOptions: boolean[] = [true, false];
-const isErrorOptions: boolean[] = [true, false];
 
 const InputFieldMeta: Meta<typeof InputFieldExample> = {
   title: 'InputField',
@@ -24,22 +20,6 @@ const InputFieldMeta: Meta<typeof InputFieldExample> = {
     },
     variants: {
       options: variantOptions,
-      control: { type: 'select' },
-    },
-    isReadOnly: {
-      options: isReadOnlyOptions,
-      control: { type: 'select' },
-    },
-    isRequired: {
-      options: isRequiredOptions,
-      control: { type: 'select' },
-    },
-    isDisabled: {
-      options: isDisabledOptions,
-      control: { type: 'select' },
-    },
-    isError: {
-      options: isErrorOptions,
       control: { type: 'select' },
     },
   },
