@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { ColorKeys, SizeKeys, VariantKeys } from '@style/style';
+import { ColorThemeKeys, SizeKeys, VariantKeys } from '@style/style';
 import styled from 'styled-components';
 
 type InputSize = SizeKeys;
 interface InputProps {
   size: InputSize;
-  color?: ColorKeys;
+  colorTheme?: ColorThemeKeys;
   variants?: VariantKeys;
   label?: string;
   value: string;
@@ -25,7 +25,7 @@ export interface InputFieldProps extends InputProps, InputActions {}
 const InputField: FC<InputFieldProps> = ({
   size = 'md',
   variants = 'outlined',
-  color,
+  colorTheme,
   value,
   label,
   placeholder,
@@ -56,7 +56,7 @@ const InputField: FC<InputFieldProps> = ({
         onChange={(e) => onChange && onChange(e.target.value)}
         onBlur={onBlur}
         variants={variants}
-        color={color}
+        colorTheme={colorTheme}
         size={size}
         disabled={isDisabled}
         readOnly={isReadOnly}
@@ -72,7 +72,7 @@ export default InputField;
  * 0. Input 컨테이너
  */
 interface InputStyles {
-  color?: ColorKeys;
+  colorTheme?: ColorThemeKeys;
   variants: VariantKeys;
   size: InputSize;
   placeholder?: string;
@@ -152,8 +152,8 @@ const StyledInput = styled.input<InputStyles>`
     const { horizon, vertical } = theme.component.inputField.padding.input[size];
     return `${vertical} ${horizon}`;
   }};
-  background-color: ${({ theme, color, variants }) => {
-    const colorToken = color ? theme.component.inputField.color[color] : theme.component.inputField.color.systemThemeColor;
+  background-color: ${({ theme, colorTheme, variants }) => {
+    const colorToken = colorTheme ? theme.component.inputField.color[colorTheme] : theme.component.inputField.color.systemThemeColor;
     return colorToken[variants].background;
   }};
   color: ${({ theme, color, variants }) => {
@@ -166,16 +166,16 @@ const StyledInput = styled.input<InputStyles>`
   font-weight: ${({ theme }) => theme.component.inputField.fontWeight.text};
 
   border: 1px solid
-    ${({ theme, isError, variants, color }) => {
-      const { errorBorder, border } = color
-        ? theme.component.inputField.color[color][variants]
+    ${({ theme, isError, variants, colorTheme }) => {
+      const { errorBorder, border } = colorTheme
+        ? theme.component.inputField.color[colorTheme][variants]
         : theme.component.inputField.color.systemThemeColor[variants];
       return isError ? errorBorder : border;
     }};
   box-shadow: 0 0 0 1px
-    ${({ theme, isError, variants, color }) => {
-      const { errorBorder } = color
-        ? theme.component.inputField.color[color][variants]
+    ${({ theme, isError, variants, colorTheme }) => {
+      const { errorBorder } = colorTheme
+        ? theme.component.inputField.color[colorTheme][variants]
         : theme.component.inputField.color.systemThemeColor[variants];
       return isError ? errorBorder : 'rgb(0,0,0,0)';
     }}
@@ -186,13 +186,13 @@ const StyledInput = styled.input<InputStyles>`
 
   &:focus-visible {
     border: 1px solid
-      ${({ theme, isError, color }) => {
-        const colorToken = color ? theme.component.inputField.color[color] : theme.component.inputField.color.systemThemeColor;
+      ${({ theme, isError, colorTheme }) => {
+        const colorToken = colorTheme ? theme.component.inputField.color[colorTheme] : theme.component.inputField.color.systemThemeColor;
         return isError ? colorToken.outlined.errorBorder : colorToken.outlined.focusBorder;
       }};
     box-shadow: 0 0 0 1px
-      ${({ theme, isError, color }) => {
-        const colorToken = color ? theme.component.inputField.color[color] : theme.component.inputField.color.systemThemeColor;
+      ${({ theme, isError, colorTheme }) => {
+        const colorToken = colorTheme ? theme.component.inputField.color[colorTheme] : theme.component.inputField.color.systemThemeColor;
         return isError ? colorToken.outlined.errorBorder : colorToken.outlined.focusBorder;
       }}
       inset;
@@ -206,8 +206,8 @@ const StyledInput = styled.input<InputStyles>`
     cursor: not-allowed;
   }
   &::placeholder {
-    color: ${({ theme, color, variants }) => {
-      const colorToken = color ? theme.component.inputField.color[color] : theme.component.inputField.color.systemThemeColor;
+    color: ${({ theme, colorTheme, variants }) => {
+      const colorToken = colorTheme ? theme.component.inputField.color[colorTheme] : theme.component.inputField.color.systemThemeColor;
       return colorToken[variants].placeholder;
     }};
   }

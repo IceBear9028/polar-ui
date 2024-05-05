@@ -1,6 +1,6 @@
 import {
   BaseToken,
-  ColorKeys,
+  ColorThemes,
   ComponentCommonColor,
   ComponentInputColor,
   ComponentToken,
@@ -16,21 +16,21 @@ import {
  **/
 
 function CommonColor(systemColor: SystemColor): ComponentCommonColor {
-  function filledContrastColor(color: ColorKeys) {
+  function filledContrastColor(color: keyof ColorThemes) {
     return {
       background: systemColor[color].primary,
       color: systemColor[color].onPrimary,
       border: `none`,
     };
   }
-  function filledColor(color: ColorKeys) {
+  function filledColor(color: keyof ColorThemes) {
     return {
       background: systemColor[color].primaryVariant,
       color: systemColor[color].onPrimaryVariant,
       border: `none`,
     };
   }
-  function outlinedColor(color: ColorKeys) {
+  function outlinedColor(color: keyof ColorThemes) {
     return {
       background: 'transparent',
       color: systemColor[color].primary,
@@ -107,7 +107,7 @@ function InputPadding(systemTokenPadding: SystemPadding) {
 }
 
 function InputColor(systemColor: SystemColor): ComponentInputColor {
-  function filledContrastColor(color: ColorKeys) {
+  function filledContrastColor(color: keyof ColorThemes) {
     return {
       text: systemColor.common.text,
       placeholder: systemColor.common.outlinedVariant,
@@ -117,7 +117,7 @@ function InputColor(systemColor: SystemColor): ComponentInputColor {
       background: systemColor.common.elementLow,
     };
   }
-  function filledColor(color: ColorKeys) {
+  function filledColor(color: keyof ColorThemes) {
     return {
       text: systemColor.common.text,
       placeholder: systemColor.common.outlinedVariant,
@@ -127,7 +127,7 @@ function InputColor(systemColor: SystemColor): ComponentInputColor {
       background: systemColor.common.elementLow,
     };
   }
-  function outlinedColor(color: ColorKeys) {
+  function outlinedColor(color: keyof ColorThemes) {
     return {
       text: systemColor.common.text,
       placeholder: systemColor.common.outlinedVariant,

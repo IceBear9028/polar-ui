@@ -1,11 +1,11 @@
 import React, { FC, createContext, ReactNode, useContext } from 'react';
-import { ColorKeys, SizeKeys } from '@style/style';
+import { ColorThemeKeys, SizeKeys } from '@style/style';
 import { CheckBoxIcon } from '../icon/icon.tsx';
 import styled from 'styled-components';
 
 interface CheckBoxCommon {
   size?: SizeKeys;
-  color?: ColorKeys;
+  colorTheme?: ColorThemeKeys;
   name?: string;
   isDisabled?: boolean;
   isReadOnly?: boolean;
@@ -89,8 +89,8 @@ export const CheckBox: FC<CheckBoxProps> = ({ ...props }) => {
   return (
     <StyledCheckboxContainer>
       <StyledCheckBox type="checkbox" isChecked={props.isChecked} onChange={clickCheckBoxEvent} />
-      <StyledCheckBoxIconContainer size={checkBoxSize} isChecked={props.isChecked} color={props.color}>
-        {props.isChecked && <CheckBoxIcon size={checkBoxSize} />}
+      <StyledCheckBoxIconContainer size={checkBoxSize} isChecked={props.isChecked} colorTheme={props.colorTheme}>
+        {props.isChecked && <CheckBoxIcon size={checkBoxSize} colorKey={props.colorTheme && { [props.colorTheme]: 'onPrimary' }} />}
       </StyledCheckBoxIconContainer>
       {props.name && <StyledText size={props.size}>{props.name}</StyledText>}
     </StyledCheckboxContainer>
@@ -131,9 +131,9 @@ const StyledCheckBoxIconContainer = styled.span<Omit<CheckBoxProps, 'onChange'>>
 
   border: ${({ isChecked }) => (isChecked ? 'none' : '2px solid #C0C6CA')};
   border-radius: 3px;
-  background: ${({ theme, color, isChecked }) => {
+  background: ${({ theme, colorTheme, isChecked }) => {
     if (isChecked) {
-      return color ? theme.system.color[color].primary : theme.system.color.systemThemeColor.primary;
+      return colorTheme ? theme.system.color[colorTheme].primary : theme.system.color.systemThemeColor.primary;
     }
   }};
   width: ${({ theme, size }) => {

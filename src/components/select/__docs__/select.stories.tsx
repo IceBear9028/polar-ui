@@ -1,8 +1,8 @@
-import { ColorKeys, SizeKeys, VariantKeys } from '../../../style/style';
+import { ColorThemeKeys, SizeKeys, VariantKeys } from '../../../style/style';
 import { Meta, StoryObj } from '@storybook/react';
 import SelectExample from './selectExample';
 
-const colorOptions: ColorKeys[] = ['red', 'green', 'blue', 'gray'];
+const colorOptions: ColorThemeKeys[] = ['red', 'green', 'blue', 'gray'];
 const sizeOptions: SizeKeys[] = ['xs', 'sm', 'md', 'lg'];
 const variantOptions: VariantKeys[] = ['filledContrast', 'filled', 'outlined'];
 const isRequiredOptions: boolean[] = [true, false];
@@ -19,7 +19,7 @@ const SelectMeta: Meta<typeof SelectExample> = {
   title: 'Select',
   component: SelectExample,
   argTypes: {
-    color: {
+    colorTheme: {
       options: colorOptions,
       control: { type: 'select' },
     },
@@ -53,7 +53,7 @@ type SelectStory = StoryObj<typeof SelectExample>;
 export const Green: SelectStory = {
   args: {
     value: 'InputField',
-    color: 'green',
+    colorTheme: 'green',
     size: 'md',
     label: 'label',
     variants: 'outlined',
@@ -69,7 +69,7 @@ export const Green: SelectStory = {
 export const Red: SelectStory = {
   args: {
     value: 'InputField',
-    color: 'red',
+    colorTheme: 'red',
     size: 'md',
     label: 'label',
     variants: 'outlined',
@@ -85,7 +85,7 @@ export const Red: SelectStory = {
 export const Blue: SelectStory = {
   args: {
     value: 'InputField',
-    color: 'blue',
+    colorTheme: 'blue',
     size: 'md',
     label: 'label',
     variants: 'outlined',
@@ -101,7 +101,7 @@ export const Blue: SelectStory = {
 export const Gray: SelectStory = {
   args: {
     value: 'InputField',
-    color: 'gray',
+    colorTheme: 'gray',
     size: 'md',
     label: 'label',
     variants: 'outlined',

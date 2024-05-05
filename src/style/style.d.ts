@@ -148,7 +148,7 @@ interface CommonBolds {
 }
 type BoldKeys = keyof CommonBolds;
 
-interface Colors {
+export interface ColorThemes {
   red: string;
   blue: string;
   gray: string;
@@ -156,7 +156,20 @@ interface Colors {
   systemThemeColor: string;
 }
 
-type ColorKeys = keyof Colors;
+type ColorThemeKeys = keyof Omit<ColorThemes, 'systemThemeColor'>;
+
+type SystemColorKeys = {
+  [theme in ColorThemeKeys]: { [P in theme]: keyof SystemDetailColorTheme };
+}[keyof ColorThemeKeys];
+
+/**  ColorKeys
+ * 두가지 방법으로 입력 가능
+ * 1. ColorThemes : 'red', 'blue', 'gray', 'green'
+ * - 입력 시 색상 테마의 primaryColor 로 자동매칭
+ * 2. ColorTheme + SystemToken : {'red' : 'primary'} | {'red' : 'onPrimary'} | ...
+ * - 색상 테마와 systemToken 의 조합을 이용하여 좀더 세세한 토큰 지정 가능
+ */
+type ColorKeys = ColorThemeKeys | SystemColorKeys;
 
 type LightDarkKeys = 'dark' | 'light';
 type componentKeys = 'input' | 'display';
@@ -164,7 +177,7 @@ type componentKeys = 'input' | 'display';
 type ButtonSize = keyof Omit<CommonSize, 'default'>;
 
 type ButtonVariants = keyof Variants;
-type ButtonColorKeys = ColorKeys;
+type ButtonColorKeys = ColorThemeKeys;
 
 /** Padding 관련 스타일 지정
  */
@@ -179,6 +192,7 @@ interface SystemPadding {
     sm: Padding;
     md: Padding;
     lg: Padding;
+    default?: Padding;
   };
 }
 

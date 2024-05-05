@@ -1,5 +1,5 @@
 import { baseToken } from './base.ts';
-import { ColorKeys, SizeKeys, SystemColor, SystemPadding, SystemToken, SystemThemeColors, HeaderSizeKeys } from './style';
+import { ColorKeys, SizeKeys, SystemColor, SystemPadding, SystemToken, SystemThemeColors, HeaderSizeKeys, ColorThemeKeys } from './style';
 
 const padding: SystemPadding = {
   input: {
@@ -24,7 +24,7 @@ const padding: SystemPadding = {
 
 // 전체 시스템의 default 패딩 값을 지정하는 함수
 export function systemPadding(size: SizeKeys) {
-  const componentNames = Object.keys(padding);
+  const componentNames = Object.keys(padding) as (keyof SystemPadding)[];
   let paddingObj = {} as SystemPadding;
   for (let comp of componentNames) {
     paddingObj[comp] = { ...padding[comp], default: padding[comp][size] };
@@ -215,7 +215,7 @@ export const darkTheme: SystemThemeColors = {
 
 // 변경시 컴포넌트 기본 테마 색상을 재지정
 // systemThemeColor : 시스템 전체 테마 색상.
-export function systemDarkColor(color: ColorKeys): SystemColor {
+export function systemDarkColor(color: ColorThemeKeys): SystemColor {
   return {
     ...darkTheme,
     systemThemeColor: {
@@ -226,7 +226,7 @@ export function systemDarkColor(color: ColorKeys): SystemColor {
 
 // 변경시 컴포넌트 기본 테마 색상을 재지정
 // systemThemeColor : 시스템 전체 테마 색상.
-export function systemLightColor(color: ColorKeys): SystemColor {
+export function systemLightColor(color: ColorThemeKeys): SystemColor {
   return {
     ...lightTheme,
     systemThemeColor: {

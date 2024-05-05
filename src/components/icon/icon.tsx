@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { ColorKeys, SizeKeys } from '@style/style';
+import { ColorKeys, SizeKeys } from '../../style/style';
+import { getSystemThemeColorToken } from '../../style/common/getToken.ts';
 
 import ChipCloseIconSvg from '../../assets/icon/chipCloseButton.svg?react';
 import SelectArrowIconSvg from '../../assets/icon/selectDownArrowIcon.svg?react';
@@ -11,7 +12,7 @@ import CheckBoxIconSvg from '../../assets/icon/checkBoxIcon.svg?react';
 
 interface IconProps {
   size?: SizeKeys;
-  color?: ColorKeys;
+  colorKey?: ColorKeys;
 }
 
 /** StyledIcon
@@ -21,8 +22,9 @@ interface IconProps {
 const StyledIcon = styled.svg<IconProps>`
   /* 색상 변경 */
   & path {
-    fill: ${({ theme, color }) => {
-      return color ? theme.component.icon.color[color] : theme.component.icon.color.systemThemeColor;
+    fill: ${({ theme, colorKey }) => {
+      return colorKey && getSystemThemeColorToken(theme, colorKey);
+      // return color ? theme.component.icon.color[color] : theme.component.icon.color.systemThemeColor;
     }};
   }
 

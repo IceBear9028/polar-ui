@@ -3,36 +3,10 @@ import { InputFieldProps } from '../inputField';
 import styled from 'styled-components';
 import { InputField } from '../index';
 
-const InputFieldExample: FC<InputFieldProps> = ({
-  color,
-  variants,
-  size,
-  label,
-  placeholder,
-  isRequired,
-  isReadOnly,
-  isError,
-  isDisabled,
-  value,
-  errorMessage,
-  onChange,
-}) => {
+const InputFieldExample: FC<InputFieldProps> = (props) => {
   return (
     <Background>
-      <InputField
-        size={size}
-        value={value}
-        label={label}
-        placeholder={placeholder}
-        variants={variants}
-        color={color}
-        isError={isError}
-        isDisabled={isDisabled}
-        isReadOnly={isReadOnly}
-        isRequired={isRequired}
-        errorMessage={errorMessage}
-        onChange={onChange}
-      />
+      <InputField {...props} />
     </Background>
   );
 };

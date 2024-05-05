@@ -4,7 +4,7 @@ import { ButtonColorKeys, ButtonSize, ButtonVariants, ColorKeys } from '@style/s
 
 export interface ButtonProps {
   size: ButtonSize;
-  color?: ButtonColorKeys;
+  colorTheme?: ButtonColorKeys;
   variants?: ButtonVariants;
   text: string;
   icon?: React.JSX.Element;
@@ -45,17 +45,17 @@ const StyledButton = styled.button<StyledButtonProps>`
     return `${resultPadding.vertical} ${resultPadding.horizon}`;
   }};
 
-  background-color: ${({ theme, color, variants }) => {
-    const colorKey: ColorKeys = color ? color : 'systemThemeColor';
+  background-color: ${({ theme, colorTheme, variants }) => {
+    const colorKey: ColorKeys = colorTheme ? colorTheme : 'systemThemeColor';
     return theme.component.button.color[colorKey][variants].background;
   }};
-  color: ${({ theme, color, variants }) => {
-    const colorKey: ColorKeys = color ? color : 'systemThemeColor';
+  color: ${({ theme, colorTheme, variants }) => {
+    const colorKey: ColorKeys = colorTheme ? colorTheme : 'systemThemeColor';
     return theme.component.button.color[colorKey][variants].color;
   }};
   box-shadow: 0 0 0 2px
-    ${({ theme, color, variants }) => {
-      const colorKey: ColorKeys = color ? color : 'systemThemeColor';
+    ${({ theme, colorTheme, variants }) => {
+      const colorKey: ColorKeys = colorTheme ? colorTheme : 'systemThemeColor';
       return theme.component.button.color[colorKey][variants].border;
     }};
 

@@ -1,4 +1,4 @@
-import { ColorKeys, DesignToken, HeaderSizeKeys, SizeKeys } from './style';
+import { ColorThemes, DesignToken, HeaderSizeKeys, SizeKeys } from './style';
 import { systemToken } from './system.ts';
 import { componentToken } from './component.ts';
 import { baseToken } from './base.ts';
@@ -10,7 +10,7 @@ import { baseToken } from './base.ts';
  */
 export function designToken(
   theme: 'dark' | 'light' = 'light',
-  colorTheme: ColorKeys = 'green',
+  colorTheme: keyof Omit<ColorThemes, 'systemThemeColor'> = 'green',
   defaultSize: SizeKeys = 'md',
   defaultHeaderSize: HeaderSizeKeys = 'h3',
 ): DesignToken {

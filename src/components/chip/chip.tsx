@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { ColorKeys, CommonSize, VariantKeys } from '@style/style';
+import { ColorThemeKeys, CommonSize, VariantKeys } from '@style/style';
 import { ChipCloseIcon } from '../icon/icon.tsx';
 
 export interface ChipProps {
-  color?: ColorKeys;
+  colorTheme?: ColorThemeKeys;
   variants?: VariantKeys;
   name: string;
   icon: React.JSX.Element;
@@ -13,18 +13,18 @@ export interface ChipProps {
   onClick?: () => void;
 }
 
-interface StyledChipProps extends Pick<ChipProps, 'color' | 'variants' | 'size'> {
+interface StyledChipProps extends Pick<ChipProps, 'colorTheme' | 'variants' | 'size'> {
   size: keyof Omit<CommonSize, 'default' | 'xs' | 'lg'>;
   variant: VariantKeys;
 }
 
-const Chip: FC<ChipProps> = ({ variants = 'filledContrast', size = 'md', color, name, onDelete }) => {
+const Chip: FC<ChipProps> = ({ variants = 'filledContrast', size = 'md', colorTheme, name, onDelete }) => {
   return (
-    <ChipContainer color={color} variant={variants} size={size}>
+    <ChipContainer colorTheme={colorTheme} variant={variants} size={size}>
       {name}
       {onDelete && (
         <IconBtn onClick={onDelete}>
-          <ChipCloseIcon color={color} size={size} />
+          <ChipCloseIcon colorKey={colorTheme && { [colorTheme]: 'onPrimary' }} size={size} />
         </IconBtn>
       )}
     </ChipContainer>
@@ -46,17 +46,17 @@ const ChipContainer = styled.div<StyledChipProps>`
     return `${resultPadding.vertical} ${resultPadding.horizon}`;
   }};
 
-  background: ${({ theme, color, variant }) => {
-    const colorKey = color ? color : 'systemThemeColor';
+  background: ${({ theme, colorTheme, variant }) => {
+    const colorKey = colorTheme ? colorTheme : 'systemThemeColor';
     return theme.component.chip.color[colorKey][variant].background;
   }};
-  color: ${({ theme, color, variant }) => {
-    const colorKey = color ? color : 'systemThemeColor';
+  color: ${({ theme, colorTheme, variant }) => {
+    const colorKey = colorTheme ? colorTheme : 'systemThemeColor';
     return theme.component.chip.color[colorKey][variant].color;
   }};
   box-shadow: 0 0 0 2px
-    ${({ theme, color, variant }) => {
-      const colorKey: ColorKeys = color ? color : 'systemThemeColor';
+    ${({ theme, colorTheme, variant }) => {
+      const colorKey = colorTheme ? colorTheme : 'systemThemeColor';
       return theme.component.button.color[colorKey][variant].border;
     }};
 `;

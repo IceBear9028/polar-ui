@@ -2,10 +2,10 @@ import { FC } from 'react';
 import Button, { ButtonProps } from '../button.tsx';
 import styled from 'styled-components';
 
-const Example: FC<ButtonProps> = ({ onClick, size, text, color, variants }) => {
+const Example: FC<ButtonProps> = ({ onClick, size, text, colorTheme, variants }) => {
   return (
     <Background>
-      <Button size={size} text={text} onClick={onClick} color={color} variants={variants} />
+      <Button size={size} text={text} onClick={onClick} colorTheme={colorTheme} variants={variants} />
     </Background>
   );
 };

@@ -1,4 +1,4 @@
-import { ColorKeys, SizeKeys, VariantKeys } from '@style/style';
+import { ColorThemeKeys, SizeKeys, VariantKeys } from '@style/style';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { SelectArrowIcon } from '../icon/icon.tsx';
@@ -7,7 +7,7 @@ type SelectSize = SizeKeys;
 
 interface SelectSettingProps {
   size: SelectSize;
-  color?: ColorKeys;
+  colorTheme?: ColorThemeKeys;
   variants: VariantKeys;
   label: string;
   value: string;
@@ -51,7 +51,7 @@ const Select: FC<SelectProps> = ({ size = 'md', variants = 'outlined', option, .
         <StyledSelectField
           size={size}
           variants={variants}
-          color={props.color}
+          colorTheme={props.colorTheme}
           placeholder={props.placeholder}
           isDisabled={props.isDisabled}
           isError={props.isError}
@@ -75,7 +75,7 @@ const Select: FC<SelectProps> = ({ size = 'md', variants = 'outlined', option, .
 export default Select;
 
 interface SelectStyles
-  extends Pick<SelectSettingProps, 'size' | 'color' | 'variants' | 'placeholder' | 'isRequired' | 'isDisabled' | 'isError'> {}
+  extends Pick<SelectSettingProps, 'size' | 'colorTheme' | 'variants' | 'placeholder' | 'isRequired' | 'isDisabled' | 'isError'> {}
 
 const StyledSelectContainer = styled.div`
   display: flex;
@@ -153,28 +153,28 @@ const StyledSelectField = styled.select<SelectStyles>`
 
   // border 설정
   border: 1px solid
-    ${({ theme, isError, variants, color }) => {
-      const { errorBorder, border } = color
-        ? theme.component.select.color[color][variants]
+    ${({ theme, isError, variants, colorTheme }) => {
+      const { errorBorder, border } = colorTheme
+        ? theme.component.select.color[colorTheme][variants]
         : theme.component.select.color.systemThemeColor[variants];
       return isError ? errorBorder : border;
     }};
   box-shadow: 0 0 0 1px
-    ${({ theme, isError, variants, color }) => {
-      const { errorBorder } = color
-        ? theme.component.select.color[color][variants]
+    ${({ theme, isError, variants, colorTheme }) => {
+      const { errorBorder } = colorTheme
+        ? theme.component.select.color[colorTheme][variants]
         : theme.component.select.color.systemThemeColor[variants];
       return isError ? errorBorder : 'rgb(0,0,0,0)';
     }}
     inset;
 
-  background-color: ${({ theme, variants, color }) => {
-    const colorToken = color ? theme.component.select.color[color] : theme.component.select.color.systemThemeColor;
+  background-color: ${({ theme, variants, colorTheme }) => {
+    const colorToken = colorTheme ? theme.component.select.color[colorTheme] : theme.component.select.color.systemThemeColor;
     return colorToken[variants].background;
   }};
 
-  color: ${({ theme, color, variants }) => {
-    const colorToken = color ? theme.component.select.color[color] : theme.component.select.color.systemThemeColor;
+  color: ${({ theme, colorTheme, variants }) => {
+    const colorToken = colorTheme ? theme.component.select.color[colorTheme] : theme.component.select.color.systemThemeColor;
     return colorToken[variants].text;
   }};
 
@@ -186,13 +186,13 @@ const StyledSelectField = styled.select<SelectStyles>`
 
   &:focus-visible {
     border: 1px solid
-      ${({ theme, isError, color }) => {
-        const colorToken = color ? theme.component.select.color[color] : theme.component.select.color.systemThemeColor;
+      ${({ theme, isError, colorTheme }) => {
+        const colorToken = colorTheme ? theme.component.select.color[colorTheme] : theme.component.select.color.systemThemeColor;
         return isError ? colorToken.outlined.errorBorder : colorToken.outlined.focusBorder;
       }};
     box-shadow: 0 0 0 1px
-      ${({ theme, isError, color }) => {
-        const colorToken = color ? theme.component.select.color[color] : theme.component.select.color.systemThemeColor;
+      ${({ theme, isError, colorTheme }) => {
+        const colorToken = colorTheme ? theme.component.select.color[colorTheme] : theme.component.select.color.systemThemeColor;
         return isError ? colorToken.outlined.errorBorder : colorToken.outlined.focusBorder;
       }}
       inset;
@@ -202,8 +202,8 @@ const StyledSelectField = styled.select<SelectStyles>`
     cursor: not-allowed;
   }
   &::placeholder {
-    color: ${({ theme, color, variants }) => {
-      const colorToken = color ? theme.component.select.color[color] : theme.component.select.color.systemThemeColor;
+    color: ${({ theme, colorTheme, variants }) => {
+      const colorToken = colorTheme ? theme.component.select.color[colorTheme] : theme.component.select.color.systemThemeColor;
       return colorToken[variants].placeholder;
     }};
   }

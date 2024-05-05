@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import ChipExample from './ChipExample';
-import { ColorKeys, SizeKeys, VariantKeys } from '../../../style/style';
+import { ColorThemeKeys, SizeKeys, VariantKeys } from '../../../style/style';
 
-const colorOprions: ColorKeys[] = ['red', 'green', 'blue', 'gray'];
+const colorOptions: ColorThemeKeys[] = ['red', 'green', 'blue', 'gray'];
 const sizeOptions: SizeKeys[] = ['sm', 'md'];
 const variantOptions: VariantKeys[] = ['filledContrast', 'filled', 'outlined'];
 
@@ -10,8 +10,8 @@ const ChipMeta: Meta<typeof ChipExample> = {
   title: 'Chip',
   component: ChipExample,
   argTypes: {
-    color: {
-      options: colorOprions,
+    colorTheme: {
+      options: colorOptions,
       control: { type: 'select' },
     },
     size: {
@@ -32,7 +32,7 @@ type ChipStory = StoryObj<typeof ChipExample>;
 export const Green: ChipStory = {
   args: {
     name: 'Chip',
-    color: 'green',
+    colorTheme: 'green',
     size: `md`,
     variants: 'filledContrast',
   },
@@ -41,7 +41,7 @@ export const Green: ChipStory = {
 export const Blue: ChipStory = {
   args: {
     name: 'Chip',
-    color: 'blue',
+    colorTheme: 'blue',
     size: 'md',
     variants: 'filledContrast',
   },
@@ -50,7 +50,7 @@ export const Blue: ChipStory = {
 export const Red: ChipStory = {
   args: {
     name: 'Chip',
-    color: 'red',
+    colorTheme: 'red',
     size: 'md',
     variants: 'filledContrast',
   },
@@ -59,7 +59,7 @@ export const Red: ChipStory = {
 export const Gray: ChipStory = {
   args: {
     name: 'Chip',
-    color: 'gray',
+    colorTheme: 'gray',
     size: 'md',
     variants: 'filledContrast',
   },

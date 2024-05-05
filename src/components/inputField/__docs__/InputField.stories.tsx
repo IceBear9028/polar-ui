@@ -1,8 +1,8 @@
-import { ColorKeys, SizeKeys, VariantKeys } from '../../../style/style';
+import { ColorThemeKeys, SizeKeys, VariantKeys } from '../../../style/style';
 import { Meta, StoryObj } from '@storybook/react';
 import InputFieldExample from './InputFieldExample';
 
-const colorOptions: ColorKeys[] = ['red', 'green', 'blue', 'gray'];
+const colorOptions: ColorThemeKeys[] = ['red', 'green', 'blue', 'gray'];
 const sizeOptions: SizeKeys[] = ['xs', 'sm', 'md', 'lg'];
 const variantOptions: VariantKeys[] = ['filledContrast', 'filled', 'outlined'];
 
@@ -10,7 +10,7 @@ const InputFieldMeta: Meta<typeof InputFieldExample> = {
   title: 'InputField',
   component: InputFieldExample,
   argTypes: {
-    color: {
+    colorTheme: {
       options: colorOptions,
       control: { type: 'select' },
     },
@@ -32,7 +32,7 @@ type InputFieldStory = StoryObj<typeof InputFieldExample>;
 export const Green: InputFieldStory = {
   args: {
     value: 'InputField',
-    color: 'green',
+    colorTheme: 'green',
     size: 'md',
     label: 'label',
     variants: 'outlined',
@@ -46,7 +46,7 @@ export const Green: InputFieldStory = {
 export const Blue: InputFieldStory = {
   args: {
     value: 'InputField',
-    color: 'blue',
+    colorTheme: 'blue',
     size: 'md',
     label: 'label',
     variants: 'outlined',
@@ -60,7 +60,7 @@ export const Blue: InputFieldStory = {
 export const Red: InputFieldStory = {
   args: {
     value: 'InputField',
-    color: 'red',
+    colorTheme: 'red',
     size: 'md',
     label: 'label',
     variants: 'outlined',
@@ -74,7 +74,7 @@ export const Red: InputFieldStory = {
 export const Gray: InputFieldStory = {
   args: {
     value: 'InputField',
-    color: 'gray',
+    colorTheme: 'gray',
     size: 'md',
     label: 'label',
     variants: 'outlined',
